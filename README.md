@@ -55,4 +55,55 @@
 - For more details, refer to official documentation of **ASP.NET Core**, **Entity Framework**, and other listed technologies.
 - Feel free to contribute and improve this repository!
 
+# Shopping Website Development Project
+
+## Project Overview
+This project aims to develop a fully functional online shopping website, providing users with a smooth shopping experience, including browsing products, adding items to the cart, and placing orders.
+
+## Use Cases
+- **Browsing Products**: Users can view products in different categories, filter, and search.
+- **Adding to Cart**: Users can select products and add them to their cart.
+- **Placing Orders**: Support multiple payment methods such as credit cards, Alipay, and WeChat Pay.
+- **Order Tracking**: Users can check order status and shipping information.
+- **User Registration/Login**: Create accounts for personalized services.
+- **Product Management** (for administrators): Upload, edit, and delete product information.
+- **Customer Support**: Users can submit inquiries or contact customer service.
+
+## Key Features
+- **Product Display** (images, descriptions, prices, etc.)
+- **Shopping Cart Management** (add, remove items)
+- **Payment System** (support multiple payment options)
+- **Order Management** (view order history, track shipping)
+- **User System** (registration, login, account management)
+- **Discount System** (coupons, promotions)
+- **Review System** (users can rate and review products)
+- **Admin Dashboard** (inventory management, order processing, user management)
+
+## Team Members
+This project team consists of the following roles:
+- **Product Manager (PM)**: Responsible for requirement analysis, planning, and team coordination.
+- **UI/UX Designer**: Designs the user interface to ensure a good user experience.
+- **Frontend Developer**: Responsible for website interaction (HTML, CSS, JavaScript).
+- **Backend Developer**: Handles server-side development, database management, payment integration, etc.
+- **QA Engineer**: Conducts functionality testing to ensure stability and security.
+- **Marketing/Operations Team**: Researches competitors and plans promotional strategies.
+
+## Team Communication Tools
+To enhance communication efficiency, we recommend using:
+- **Slack** - Team chats, file sharing, and integrations.
+- **Microsoft Teams** - Supports meetings and document collaboration.
+- **Discord** - Ideal for real-time communication, especially for tech teams.
+- **WeChat/DingTalk** - Useful for quick messaging and task tracking.
+- **Notion/Jira** - For task management and progress tracking.
+
+## Project Management & Meeting Schedule
+The team will meet weekly to ensure development progress:
+- **Weekly Meeting**: Summarize progress and adjust plans.
+- **Stand-up Meetings** (short updates): Quick status updates.
+- **Code Review**: Improve code quality and efficiency.
+- **Problem Discussions**: Resolve technical or operational issues.
+
+## Directory Structure
+
+
 🚀 Happy Coding!
