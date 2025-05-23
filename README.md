@@ -106,4 +106,69 @@ The team will meet weekly to ensure development progress:
 ## Directory Structure
 
 
+# Shopping Website App Development Project
+
+## Project Overview
+This project aims to develop a fully functional online shopping website app using **Visual Studio** and following the **MVC (Model-View-Controller) architecture**. The team consists of **three members** working collaboratively to build a smooth shopping experience for users.
+
+## Tech Stack
+- **Development Tool**: Visual Studio (VS)
+- **Architecture**: MVC (Model-View-Controller)
+- **Programming Languages**: C# (ASP.NET Core), HTML/CSS, JavaScript
+- **Database**: SQL Server
+- **Team Size**: 3 members
+
+## Use Cases
+- **Browsing Products**: Users can view and filter products.
+- **Shopping Cart**: Users can add and remove items.
+- **Placing Orders**: Multiple payment options (e.g., PayPal, Stripe).
+- **Order Tracking**: Users can check the status of their purchases.
+- **User Management**: Registration, login, account settings.
+- **Admin Dashboard**: Manage products, inventory, and users.
+
+## Development Timeline (6 Weeks)
+### Week 1: Planning & Setup
+- Define project goals and key functionalities.
+- Initialize MVC project in Visual Studio.
+- Configure GitHub repository for collaboration.
+- Design database schema (users, products, orders).
+- Assign responsibilities among team members.
+
+### Week 2: Basic Functionality
+- **User management** (registration, login).
+- **Product display** (database integration, product listing).
+- Implement MVC components (Controllers, Models, Views).
+- Initial front-end UI design (HTML + CSS).
+
+### Week 3: Shopping Cart & Order Management
+- **Shopping cart system** (add/remove items).
+- **Order management** (create and store order details).
+- Establish database relations (users, products, orders).
+- Research payment API integration (PayPal, Stripe).
+
+### Week 4: Payment & Admin Features
+- **Payment system integration** (complete checkout process).
+- **Order status updates** (tracking shipments).
+- **Admin dashboard** (manage products, inventory, users).
+- Enhance front-end UI for better user experience.
+
+### Week 5: Testing & Optimization
+- **Functionality testing** (registration, shopping, payment).
+- **Security testing** (SQL injection prevention, authentication).
+- **Bug fixes & performance enhancements**.
+
+### Week 6: Deployment & Feedback
+- Deploy app to a cloud server (Azure, AWS).
+- Gather feedback and improve UI/UX.
+- Team reflection and final adjustments.
+- Launch project officially.
+
+## Weekly Meetings Schedule
+- **Monday**: Task assignments & code review.
+- **Wednesday**: Progress update & issue discussions.
+- **Friday**: Testing & code optimization.
+
+## Project Folder Structure
+
+
 🚀 Happy Coding!
