@@ -57,118 +57,120 @@
 
 # Shopping Website Development Project
 
-## Project Overview
-This project aims to develop a fully functional online shopping website, providing users with a smooth shopping experience, including browsing products, adding items to the cart, and placing orders.
+# LearnHub Online Learning Platform Development Project
 
-## Use Cases
-- **Browsing Products**: Users can view products in different categories, filter, and search.
-- **Adding to Cart**: Users can select products and add them to their cart.
-- **Placing Orders**: Support multiple payment methods such as credit cards, Alipay, and WeChat Pay.
-- **Order Tracking**: Users can check order status and shipping information.
-- **User Registration/Login**: Create accounts for personalized services.
-- **Product Management** (for administrators): Upload, edit, and delete product information.
-- **Customer Support**: Users can submit inquiries or contact customer service.
+## 1. Project Overview
+This project aims to develop an **online learning platform, LearnHub**, where users can search for courses, enroll in learning programs, and participate in course discussions. The system adopts the **MVC (Model-View-Controller) architecture**, is developed using **ASP.NET Core**, and supports course purchasing and interactive discussions to foster knowledge sharing and community learning.
 
-## Key Features
-- **Product Display** (images, descriptions, prices, etc.)
-- **Shopping Cart Management** (add, remove items)
-- **Payment System** (support multiple payment options)
-- **Order Management** (view order history, track shipping)
-- **User System** (registration, login, account management)
-- **Discount System** (coupons, promotions)
-- **Review System** (users can rate and review products)
-- **Admin Dashboard** (inventory management, order processing, user management)
+---
 
-## Team Members
-This project team consists of the following roles:
-- **Product Manager (PM)**: Responsible for requirement analysis, planning, and team coordination.
-- **UI/UX Designer**: Designs the user interface to ensure a good user experience.
-- **Frontend Developer**: Responsible for website interaction (HTML, CSS, JavaScript).
-- **Backend Developer**: Handles server-side development, database management, payment integration, etc.
-- **QA Engineer**: Conducts functionality testing to ensure stability and security.
-- **Marketing/Operations Team**: Researches competitors and plans promotional strategies.
+## 2. Key Features
+| Feature Module      | Description |
+|------------------|----------------------------|
+| **User Registration/Login** | Identity verification via email or phone number, password recovery support |
+| **Course Browsing & Categorization** | Courses are categorized (Programming, Design, Business, etc.) and can be filtered using keywords |
+| **Course Enrollment** | Free courses can be accessed instantly, paid courses require payment through third-party gateways |
+| **Course Discussion Forum** | Each course includes a comment section where users can ask questions and engage in discussions |
+| **Video Upload** | Users can upload educational videos, which are reviewed by administrators before publishing |
+| **Learning Progress Tracking** | Users can monitor their progress and view completed courses |
+| **Payment System** | Stripe or PayPal integration for secure online payments |
+| **Admin Panel** | Course management, user control, content moderation |
 
-## Team Communication Tools
-To enhance communication efficiency, we recommend using:
-- **Slack** - Team chats, file sharing, and integrations.
-- **Microsoft Teams** - Supports meetings and document collaboration.
-- **Discord** - Ideal for real-time communication, especially for tech teams.
-- **WeChat/DingTalk** - Useful for quick messaging and task tracking.
-- **Notion/Jira** - For task management and progress tracking.
+---
 
-## Project Management & Meeting Schedule
-The team will meet weekly to ensure development progress:
-- **Weekly Meeting**: Summarize progress and adjust plans.
-- **Stand-up Meetings** (short updates): Quick status updates.
-- **Code Review**: Improve code quality and efficiency.
-- **Problem Discussions**: Resolve technical or operational issues.
+## 3. Technology Stack
+| Category         | Selected Technologies |
+|-----------------|--------------------------------|
+| **Development Tools** | Visual Studio, GitHub |
+| **Backend Framework** | ASP.NET Core MVC, Entity Framework |
+| **Frontend Framework** | Vue.js, React, Bootstrap |
+| **Database** | SQL Server, MySQL |
+| **API Interaction** | RESTful API, AJAX, Axios |
+| **Payment Integration** | Stripe, PayPal |
+| **Deployment Methods** | Azure, AWS, Docker, Kubernetes |
 
-## Directory Structure
+---
 
+## 4. Use Case Descriptions
+### 4.1 User Registration & Login
+| Use Case Name  | User Registration & Login |
+|---------------|----------------------------|
+| **Actors**    | Learners, Administrators |
+| **Preconditions** | User has not registered or logged in |
+| **Basic Flow** | User provides email or phone number → Account verification → Successful login |
+| **Extended Flow** | If the user forgets their password, they can recover it via email/phone |
+| **Exceptions** | Login failure due to incorrect password or inactive account |
 
-# Shopping Website App Development Project
+### 4.2 Course Browsing & Filtering
+| Use Case Name  | Course Browsing & Filtering |
+|---------------|----------------------------|
+| **Actors**    | Learners |
+| **Preconditions** | User is logged in |
+| **Basic Flow** | User accesses the course catalog → Filters courses by category or keyword |
+| **Extended Flow** | User can bookmark courses for future learning |
+| **Exceptions** | No matching courses found |
 
-## Project Overview
-This project aims to develop a fully functional online shopping website app using **Visual Studio** and following the **MVC (Model-View-Controller) architecture**. The team consists of **three members** working collaboratively to build a smooth shopping experience for users.
+### 4.3 Course Enrollment & Payment
+| Use Case Name  | Course Enrollment & Payment |
+|---------------|----------------------------|
+| **Actors**    | Learners |
+| **Preconditions** | User is logged in |
+| **Basic Flow** | User selects a course → Paid courses lead to the payment interface → Course unlocks after successful payment |
+| **Extended Flow** | User can request a refund following platform rules |
+| **Exceptions** | Payment failure, course access not granted |
 
-## Tech Stack
-- **Development Tool**: Visual Studio (VS)
-- **Architecture**: MVC (Model-View-Controller)
-- **Programming Languages**: C# (ASP.NET Core), HTML/CSS, JavaScript
-- **Database**: SQL Server
-- **Team Size**: 3 members
+### 4.4 Course Forum Interaction
+| Use Case Name  | Course Forum Interaction |
+|---------------|----------------------------|
+| **Actors**    | Learners, Instructors |
+| **Preconditions** | User has enrolled in a course |
+| **Basic Flow** | User enters the course forum → Posts questions or replies to others |
+| **Extended Flow** | A "Popular Discussions" section enhances engagement |
+| **Exceptions** | Comments violating community rules are removed |
 
-## Use Cases
-- **Browsing Products**: Users can view and filter products.
-- **Shopping Cart**: Users can add and remove items.
-- **Placing Orders**: Multiple payment options (e.g., PayPal, Stripe).
-- **Order Tracking**: Users can check the status of their purchases.
-- **User Management**: Registration, login, account settings.
-- **Admin Dashboard**: Manage products, inventory, and users.
+### 4.5 Video Upload & Moderation
+| Use Case Name  | Video Upload & Moderation |
+|---------------|----------------------------|
+| **Actors**    | Learners, Administrators |
+| **Preconditions** | User has permission to upload videos |
+| **Basic Flow** | User selects a file → Submits for review → Admin approves before public display |
+| **Extended Flow** | Videos are categorized using tags for better searchability |
+| **Exceptions** | Videos violating copyright or content regulations are rejected |
 
-## Development Timeline (6 Weeks)
-### Week 1: Planning & Setup
-- Define project goals and key functionalities.
-- Initialize MVC project in Visual Studio.
-- Configure GitHub repository for collaboration.
-- Design database schema (users, products, orders).
-- Assign responsibilities among team members.
+---
 
-### Week 2: Basic Functionality
-- **User management** (registration, login).
-- **Product display** (database integration, product listing).
-- Implement MVC components (Controllers, Models, Views).
-- Initial front-end UI design (HTML + CSS).
+## 5. Development Timeline (6 Weeks)
+| Development Phase | Task Description |
+|---------------|-------------------------------|
+| **Week 1**  | Project planning, database design, MVC project initialization |
+| **Week 2**  | User management module development, course browsing functionality |
+| **Week 3**  | Course enrollment system, forum construction |
+| **Week 4**  | Payment integration, user video upload moderation |
+| **Week 5**  | Testing, UI/UX improvements, security enhancements |
+| **Week 6**  | Project deployment, user feedback collection, final adjustments |
 
-### Week 3: Shopping Cart & Order Management
-- **Shopping cart system** (add/remove items).
-- **Order management** (create and store order details).
-- Establish database relations (users, products, orders).
-- Research payment API integration (PayPal, Stripe).
+---
 
-### Week 4: Payment & Admin Features
-- **Payment system integration** (complete checkout process).
-- **Order status updates** (tracking shipments).
-- **Admin dashboard** (manage products, inventory, users).
-- Enhance front-end UI for better user experience.
+## 6. Team Role Assignment
+| Role          | Responsibilities |
+|--------------|----------------------------|
+| **Product Manager** | Requirement analysis, project planning, team coordination |
+| **UI/UX Designer** | User interface design and interaction optimization |
+| **Frontend Developer** | Responsible for frontend component development, user interactions |
+| **Backend Developer** | Server-side logic, database management, API design |
+| **QA Tester** | Functionality testing, security validation, and optimization |
+| **Content Moderator** | Reviewing course and video content for compliance |
 
-### Week 5: Testing & Optimization
-- **Functionality testing** (registration, shopping, payment).
-- **Security testing** (SQL injection prevention, authentication).
-- **Bug fixes & performance enhancements**.
+---
 
-### Week 6: Deployment & Feedback
-- Deploy app to a cloud server (Azure, AWS).
-- Gather feedback and improve UI/UX.
-- Team reflection and final adjustments.
-- Launch project officially.
+## 7. Team Communication & Management
+| Tool             | Purpose |
+|-----------------|----------------------------|
+| **Slack**       | Team communication, task assignment |
+| **Microsoft Teams** | Online meetings, document sharing |
+| **Discord**     | Real-time technical discussions |
+| **Jira / Notion** | Task management & progress tracking |
 
-## Weekly Meetings Schedule
-- **Monday**: Task assignments & code review.
-- **Wednesday**: Progress update & issue discussions.
-- **Friday**: Testing & code optimization.
+---
 
-## Project Folder Structure
-
-
-🚀 Happy Coding!
+## 8. Project Directory Structure
