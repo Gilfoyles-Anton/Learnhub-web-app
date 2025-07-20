@@ -1,0 +1,314 @@
+﻿@model Learnhub.Models.User
+
+@{
+    ViewData["Title"] = "User Profile (Standard User)";
+    var userId = Model.Id.ToString();
+    var avatarPath = $"/images/{userId}_avatar.png?ts={DateTime.Now.Ticks}";
+    var fallbackPath = "/images/default-avatar.png";
+    var favoriteCourses = ViewBag.FavoriteCourses as List<Learnhub.Models.Course>;
+    var likedCourses = ViewBag.LikedCourses as List<Learnhub.Models.Course>;
+    var purchasedCourses = ViewBag.PurchasedCourses as List<Learnhub.Models.Course>;
+    var watchedHistory = ViewBag.WatchedHistory as List<dynamic>; // anonymous type or ViewModel
+}
+
+<div class="row mt-4">
+    <!-- Sidebar -->
+    <div class="col-md-3">
+        <div class="list-group" id="sidebar">
+            <a href="#" class="list-group-item list-group-item-action active" data-target="profile">Avatar & Username</a>
+            <a href="#" class="list-group-item list-group-item-action" data-target="purchased">Purchased Courses</a>
+            <a href="#" class="list-group-item list-group-item-action" data-target="favorites">Favorited Courses</a>
+            <a href="#" class="list-group-item list-group-item-action" data-target="likes">Liked Courses</a>
+            <a href="#" class="list-group-item list-group-item-action" data-target="history">Watch History</a>
+            <a href="#" class="list-group-item list-group-item-action" data-target="wallet">Wallet</a>
+            <a href="#" class="list-group-item list-group-item-action" data-target="thirdparty">Third-party payment</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-md-9">
+        <!-- Profile Panel -->
+        <div id="profile" class="section-panel card mb-4 text-center p-3">
+            <img src="@avatarPath" onerror="this.onerror=null;this.src='@fallbackPath';" class="rounded-circle mb-3" width="80" alt="User Avatar" />
+            <h5>@Model.Username</h5>
+            <p class="text-muted">Email: @Model.Email</p>
+        </div>
+
+        <!-- Purchased Courses -->
+        <div id="purchased" class="section-panel mb-4" style="display:none;">
+            <h4>🛒 Purchased Courses</h4>
+            @if (purchasedCourses != null && purchasedCourses.Any())
+            {
+                <div class="row">
+                    @foreach (var course in purchasedCourses)
+                    {
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <img src="@course.CoverImagePath" class="card-img-top" alt="cover" />
+                                <div class="card-body">
+                                    <h5 class="card-title">@course.Title</h5>
+                                    <p class="card-text">@course.Description</p>
+                                    <p class="card-text text-muted">Price: ¥@course.Price</p>
+                                    <ul class="list-unstyled small mb-2">
+                                        <li><strong>Created:</strong> @course.CreatedAt.ToString("yyyy-MM-dd")</li>
+                                        <li><strong>Likes:</strong> @course.Likes</li>
+                                        <li><strong>Favorites:</strong> @course.Favorites</li>
+                                        <li><strong>Views:</strong> @course.Views</li>
+                                        <li><strong>Purchases:</strong> @course.Purchases</li>
+                                        <li><strong>Video Count:</strong> @course.VideoCount</li>
+                                    </ul>
+                                    <a asp-controller="Account" asp-action="PlayCourse" asp-route-id="@course.Id" class="btn btn-sm btn-outline-success">Watch</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <p class="text-muted">You haven’t purchased any courses yet.</p>
+            }
+        </div>
+
+        <!-- Favorite Courses -->
+        <div id="favorites" class="section-panel mb-4" style="display:none;">
+            <h4>⭐ Favorite Courses</h4>
+            @if (favoriteCourses != null && favoriteCourses.Any())
+            {
+                <div class="row">
+                    @foreach (var course in favoriteCourses)
+                    {
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <img src="@course.CoverImagePath" class="card-img-top" alt="cover" />
+                                <div class="card-body">
+                                    <h5 class="card-title">@course.Title</h5>
+                                    <p class="card-text">@course.Description</p>
+                                    <p class="card-text text-muted">Price: ¥@course.Price</p>
+                                    <ul class="list-unstyled small mb-2">
+                                        <li><strong>Created:</strong> @course.CreatedAt.ToString("yyyy-MM-dd")</li>
+                                        <li><strong>Likes:</strong> @course.Likes</li>
+                                        <li><strong>Favorites:</strong> @course.Favorites</li>
+                                        <li><strong>Views:</strong> @course.Views</li>
+                                        <li><strong>Purchases:</strong> @course.Purchases</li>
+                                        <li><strong>Video Count:</strong> @course.VideoCount</li>
+                                    </ul>
+                                    <a asp-controller="Account" asp-action="PlayCourse" asp-route-id="@course.Id" class="btn btn-sm btn-outline-success">Watch</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <p class="text-muted">You haven't favorited any courses yet.</p>
+            }
+        </div>
+
+        <!-- Liked Courses -->
+        <div id="likes" class="section-panel mb-4" style="display:none;">
+            <h4>👍 Liked Courses</h4>
+            @if (likedCourses != null && likedCourses.Any())
+            {
+                <div class="row">
+                    @foreach (var course in likedCourses)
+                    {
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <img src="@course.CoverImagePath" class="card-img-top" alt="cover" />
+                                <div class="card-body">
+                                    <h5 class="card-title">@course.Title</h5>
+                                    <p class="card-text">@course.Description</p>
+                                    <p class="card-text text-muted">Price: ¥@course.Price</p>
+                                    <ul class="list-unstyled small mb-2">
+                                        <li><strong>Created:</strong> @course.CreatedAt.ToString("yyyy-MM-dd")</li>
+                                        <li><strong>Likes:</strong> @course.Likes</li>
+                                        <li><strong>Favorites:</strong> @course.Favorites</li>
+                                        <li><strong>Views:</strong> @course.Views</li>
+                                        <li><strong>Purchases:</strong> @course.Purchases</li>
+                                        <li><strong>Video Count:</strong> @course.VideoCount</li>
+                                    </ul>
+                                    <a asp-controller="Account" asp-action="PlayCourse" asp-route-id="@course.Id" class="btn btn-sm btn-outline-success">Watch</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <p class="text-muted">No liked courses found.</p>
+            }
+        </div>
+
+        <!-- Watch History -->
+        <div id="history" class="section-panel mb-4" style="display:none;">
+            <h4>📺 Watch History</h4>
+            @if (watchedHistory != null && watchedHistory.Any())
+            {
+                <ul class="list-group">
+                    @foreach (var entry in watchedHistory)
+                    {
+                        var course = entry.Course;
+                        var interaction = entry.Interaction;
+                        if (course != null)
+                        {
+                            var minutes = interaction.TotalWatchTimeSeconds / 60;
+                            var lastWatched = interaction.LastWatchedAt?.ToString("g") ?? "—";
+                            var purchased = interaction.IsPurchased ? "✅ Purchased" : "❌ Not purchased";
+
+                            <li class="list-group-item">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>@course.Title</strong><br />
+                                        Watched: <strong>@minutes</strong> minutes<br />
+                                        Last Viewed: @lastWatched<br />
+                                        Status: @purchased
+                                    </div>
+                                    <a asp-controller="Account" asp-action="PlayCourse" asp-route-id="@course.Id" class="btn btn-sm btn-outline-secondary">Replay</a>
+                                </div>
+                            </li>
+                        }
+                    }
+                </ul>
+            }
+            else
+            {
+                <p class="text-muted">You haven’t watched any courses yet.</p>
+            }
+        </div>
+
+        <!-- Wallet Section -->
+        <div id="wallet" class="section-panel mb-4" style="display:none;">
+            <h4>💰 Wallet</h4>
+            <p class="text-muted">Balance: <strong>@Model.WalletBalance CNY</strong></p>
+
+            <form asp-action="ActivateRechargeCode" method="post" class="mb-3">
+                <div class="mb-3">
+                    <label for="rechargeCode" class="form-label">Activate Recharge Card</label>
+                    <input type="text" class="form-control" id="rechargeCode" name="rechargeCode" placeholder="Enter recharge card code" required />
+                </div>
+                <button type="submit" class="btn btn-success">Activate</button>
+            </form>
+
+            @if (TempData["RechargeMessage"] != null)
+            {
+                <div class="alert alert-info">@TempData["RechargeMessage"]</div>
+            }
+        </div>
+
+
+        <!-- Third-party Payment Section -->
+        <div id="thirdparty" class="section-panel mb-4" style="display:none;">
+            <h4>🌐 Third-party Payment</h4>
+            <p>
+                Dear user, you can use third-party payment, including <strong>Alipay</strong> of Alibaba, <strong>WeChat Pay</strong> of Tencent, and <strong>PayNow</strong> of the Association of Banks in Singapore.
+                <br /><br />
+                You can choose to scan the corresponding QR code in <strong>Card Area 1</strong> below to pay a certain amount to the person in charge of our website to obtain the corresponding website wallet amount.
+                <br /><br />
+                Alternatively, you can click the Alipay/WeChat/PayNow official links in <strong>Card Area 2</strong> to transfer funds to the bank card number: <strong>xxxx-xxxx-xxxx-xxxx</strong>.
+                <br /><br />
+                ⚠️ The transferred amount will be converted into wallet balance after verification by the system administrator.
+                <br /><br />
+                <strong>Our website uses CNY (¥) as the currency.</strong>
+            </p>
+
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <img src="/images/qr_alipay.png" class="card-img-top" alt="Alipay QR" />
+                        <div class="card-body">
+                            <h6 class="card-title">Alipay</h6>
+                            <p class="card-text">Scan to Pay via Alipay</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <img src="/images/qr_wechat.png" class="card-img-top" alt="WeChat QR" />
+                        <div class="card-body">
+                            <h6 class="card-title">WeChat Pay</h6>
+                            <p class="card-text">Scan to Pay via WeChat</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <img src="/images/qr_paynow.png" class="card-img-top" alt="PayNow QR" />
+                        <div class="card-body">
+                            <h6 class="card-title">PayNow</h6>
+                            <p class="card-text">Scan to Pay via PayNow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h5>🌍 Card Area 2: Third-party Payment Links</h5>
+
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <img src="/images/logo_alipay.png" class="card-img-top" alt="Alipay Logo" />
+                        <div class="card-body">
+                            <h6 class="card-title">Alipay</h6>
+                            <p class="card-text">Visit the official Alipay site to initiate payment manually or link your account.</p>
+                            <a href="https://www.alipay.com/" target="_blank" class="btn btn-primary">Visit Alipay</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <img src="/images/logo_wechat.png" class="card-img-top" alt="WeChat Pay Logo" />
+                        <div class="card-body">
+                            <h6 class="card-title">WeChat Pay</h6>
+                            <p class="card-text">Access WeChat Pay official portal for secure transactions and payment setup.</p>
+                            <a href="https://pay.weixin.qq.com/" target="_blank" class="btn btn-success">Visit WeChat Pay</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <img src="/images/logo_paynow.png" class="card-img-top" alt="PayNow Logo" />
+                        <div class="card-body">
+                            <h6 class="card-title">PayNow</h6>
+                            <p class="card-text">Use the ABS official site to transfer funds through PayNow using banking apps.</p>
+                            <a href="https://www.abs.org.sg/PayNow" target="_blank" class="btn btn-info">Visit PayNow</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <hr />
+
+            <h6>📈 Exchange Rate Info</h6>
+            <p>You can check exchange rates between your local currency and CNY here:</p>
+            <a href="https://www.xe.com/currencyconverter/" target="_blank" class="btn btn-outline-info">Open Currency Converter</a>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const links = document.querySelectorAll('#sidebar a');
+            const panels = document.querySelectorAll('.section-panel');
+
+            links.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    links.forEach(l => l.classList.remove("active"));
+                    this.classList.add("active");
+                    panels.forEach(p => p.style.display = "none");
+                    const targetId = this.getAttribute("data-target");
+                    const target = document.getElementById(targetId);
+                    if (target) target.style.display = "block";
+                });
+            });
+        });
+    </script>
+}
+
+

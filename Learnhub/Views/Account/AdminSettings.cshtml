@@ -1,0 +1,115 @@
+﻿@model Learnhub.Models.UserSettingsViewModel
+@{
+    ViewData["Title"] = "Admin Settings";
+
+    var userId = Context.Session.GetString("UserId");
+    var avatarUrl = $"/images/{userId}_avatar.png?ts={DateTime.Now.Ticks}";
+    var fallbackUrl = "/images/default-avatar.png";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4 fw-bold text-center"><i class="bi bi-gear-fill"></i> Admin Settings</h2>
+
+    <!-- Avatar Card -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-light fw-semibold">
+            <i class="bi bi-person-circle me-2"></i>Avatar Upload
+        </div>
+        <div class="card-body">
+            <form asp-action="UpdateAvatar" method="post" enctype="multipart/form-data">
+                <div class="text-center mb-3">
+                    <img src="@avatarUrl" onerror="this.onerror=null;this.src='@fallbackUrl';"
+                         class="rounded-circle shadow-sm" width="100" alt="Admin Avatar" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Upload New Avatar</label>
+                    <input type="file" name="NewAvatar" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-outline-primary w-100">
+                    <i class="bi bi-upload me-1"></i> Update Avatar
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Settings Card -->
+    <div class="card shadow-sm">
+        <div class="card-header bg-light fw-semibold">
+            <i class="bi bi-sliders me-2"></i>Update Information
+        </div>
+        <div class="card-body">
+            <form asp-action="Settings" method="post" enctype="multipart/form-data">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Verify Email (Current)</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope-at"></i></span>
+                            <input asp-for="OldEmail" class="form-control" />
+                        </div>
+                        <span asp-validation-for="OldEmail" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Verify Phone (Current)</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-phone"></i></span>
+                            <input asp-for="OldPhone" class="form-control" />
+                        </div>
+                        <span asp-validation-for="OldPhone" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">New Username</label>
+                        <input asp-for="NewUsername" class="form-control" />
+                        <span asp-validation-for="NewUsername" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">New Email</label>
+                        <input asp-for="NewEmail" class="form-control" />
+                        <span asp-validation-for="NewEmail" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">New Phone</label>
+                        <input asp-for="NewPhone" class="form-control" />
+                        <span asp-validation-for="NewPhone" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <hr class="my-4" />
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Current Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+                            <input asp-for="OldPassword" type="password" class="form-control" />
+                        </div>
+                        <span asp-validation-for="OldPassword" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">New Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-key"></i></span>
+                            <input asp-for="NewPassword" type="password" class="form-control" />
+                        </div>
+                        <span asp-validation-for="NewPassword" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-check-circle me-1"></i> Save Settings
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

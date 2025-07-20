@@ -1,0 +1,96 @@
+﻿@model Learnhub.Models.Course
+@{
+    ViewData["Title"] = "Add Course";
+}
+
+<div class="container mt-4">
+    <h2>Add New Course</h2>
+
+    <form asp-action="CreateCourse" method="post" enctype="multipart/form-data">
+        <div class="form-group mb-3">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="VideoCount">Video Count</label>
+            <input asp-for="VideoCount" type="number" class="form-control" id="videoCountInput" min="0" />
+        </div>
+
+        <!--  Cover image upload -->
+        <div class="form-group mb-3">
+            <label for="CoverImage">Course Cover Image</label>
+            <input type="file" name="CoverImage" id="CoverImage" accept="image/*" class="form-control" />
+        </div>
+
+        <!-- Video upload container -->
+        <div id="videoUploadContainer" class="form-group mt-3">
+            <!-- Generate upload and name boxes dynamically -->
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3">Save</button>
+        <a asp-action="Courses" class="btn btn-secondary mt-3">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('videoCountInput').addEventListener('input', function () {
+            const count = parseInt(this.value) || 0;
+            generateInputs(count);
+        });
+
+        function generateInputs(count) {
+            const container = document.getElementById('videoUploadContainer');
+            container.innerHTML = '';
+
+            for (let i = 0; i < count; i++) {
+                // Video upload box
+                const fileInput = document.createElement('input');
+                fileInput.type = 'file';
+                fileInput.name = 'UploadedVideos';
+                fileInput.accept = 'video/*';
+                fileInput.className = 'form-control mb-2';
+                fileInput.onchange = function () {
+                    const video = container.querySelector(`#preview${i}`);
+                    if (this.files && this.files[0]) {
+                        video.src = URL.createObjectURL(this.files[0]);
+                        video.load();
+                        video.style.display = 'block';
+                    }
+                };
+                container.appendChild(fileInput);
+
+                // Video playback window
+                const videoPreview = document.createElement('video');
+                videoPreview.id = `preview${i}`;
+                videoPreview.controls = true;
+                videoPreview.style.display = 'none';
+                videoPreview.className = 'mb-2';
+                videoPreview.width = 320;
+                videoPreview.height = 240;
+                container.appendChild(videoPreview);
+
+                // Video name input field
+                const nameInput = document.createElement('input');
+                nameInput.type = 'text';
+                nameInput.name = 'VideoNames';
+                nameInput.placeholder = `Video name (optional) for video #${i + 1}`;
+                nameInput.className = 'form-control mb-3';
+                container.appendChild(nameInput);
+            }
+        }
+    </script>
+}
+

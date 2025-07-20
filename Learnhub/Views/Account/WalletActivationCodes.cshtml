@@ -1,0 +1,148 @@
+﻿@model List<Learnhub.Models.WalletActivationCode>
+
+@{
+    ViewData["Title"] = "Wallet Activation Code Management";
+}
+
+@functions {
+    public string GetNextOrder(string column) =>
+        ViewBag.CurrentSortBy == column && ViewBag.CurrentSortOrder == "asc" ? "desc" : "asc";
+
+    public string GetArrow(string column) =>
+        ViewBag.CurrentSortBy == column ? (ViewBag.CurrentSortOrder == "asc" ? " ↑" : " ↓") : "";
+}
+
+<div class="container mt-4">
+    <h2>💰 Wallet Activation Code Management</h2>
+
+    <!-- Search -->
+    <form method="get" class="mb-3">
+        <div class="row g-2 align-items-center">
+            <div class="col-md-4">
+                <input type="text" name="search" class="form-control" placeholder="Search code/status/user" value="@ViewBag.CurrentSearch" />
+            </div>
+            <div class="col-md-4 d-flex gap-2">
+                <button type="submit" class="btn btn-outline-primary">Search</button>
+                <a asp-action="WalletActivationCodes" class="btn btn-outline-secondary">Clear</a>
+            </div>
+        </div>
+    </form>
+
+    <!-- Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>
+                        <a asp-action="WalletActivationCodes"
+                           asp-route-search="@ViewBag.CurrentSearch"
+                           asp-route-sortBy="CodeId"
+                           asp-route-sortOrder="@GetNextOrder("CodeId")"
+                           asp-route-page="@ViewBag.CurrentPage"
+                           class="text-decoration-none">
+                            CodeId @Html.Raw(GetArrow("CodeId"))
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-action="WalletActivationCodes"
+                           asp-route-search="@ViewBag.CurrentSearch"
+                           asp-route-sortBy="ActivationCode"
+                           asp-route-sortOrder="@GetNextOrder("ActivationCode")"
+                           asp-route-page="@ViewBag.CurrentPage"
+                           class="text-decoration-none">
+                            Activation Code @Html.Raw(GetArrow("ActivationCode"))
+                        </a>
+                    </th>
+                    <th>Amount</th>
+                    <th>
+                        <a asp-action="WalletActivationCodes"
+                           asp-route-search="@ViewBag.CurrentSearch"
+                           asp-route-sortBy="Status"
+                           asp-route-sortOrder="@GetNextOrder("Status")"
+                           asp-route-page="@ViewBag.CurrentPage"
+                           class="text-decoration-none">
+                            Status @Html.Raw(GetArrow("Status"))
+                        </a>
+                    </th>
+                    <th>User ID</th>
+                    <th>
+                        <a asp-action="WalletActivationCodes"
+                           asp-route-search="@ViewBag.CurrentSearch"
+                           asp-route-sortBy="Username"
+                           asp-route-sortOrder="@GetNextOrder("Username")"
+                           asp-route-page="@ViewBag.CurrentPage"
+                           class="text-decoration-none">
+                            Username @Html.Raw(GetArrow("Username"))
+                        </a>
+                    </th>
+                    <th>Used On</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var code in Model)
+                {
+                    <tr>
+                        <td>@code.Id</td>
+                        <td>@code.CodeId</td>
+                        <td>@code.ActivationCode</td>
+                        <td>@code.Amount</td>
+                        <td>@code.Status</td>
+                        <td>@(code.UsedByUserId?.ToString() ?? "—")</td>
+                        <td>@(code.UsedByUser?.Username ?? "—")</td>
+                        <td>@(code.UsedOn?.ToString("g") ?? "—")</td>
+                        <td>
+                            <a asp-action="EditWalletActivationCode" asp-route-id="@code.Id" class="btn btn-sm btn-secondary me-2">Edit</a>
+                            <form asp-action="DeleteWalletActivationCode" asp-route-id="@code.Id" method="post" style="display:inline;" onsubmit="return confirm('Confirm delete?');">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    @if (ViewBag.TotalPages > 1)
+    {
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                    <a class="page-link"
+                       asp-action="WalletActivationCodes"
+                       asp-route-page="@(ViewBag.CurrentPage - 1)"
+                       asp-route-search="@ViewBag.CurrentSearch"
+                       asp-route-sortBy="@ViewBag.CurrentSortBy"
+                       asp-route-sortOrder="@ViewBag.CurrentSortOrder">Previous</a>
+                </li>
+
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                        <a class="page-link"
+                           asp-action="WalletActivationCodes"
+                           asp-route-page="@i"
+                           asp-route-search="@ViewBag.CurrentSearch"
+                           asp-route-sortBy="@ViewBag.CurrentSortBy"
+                           asp-route-sortOrder="@ViewBag.CurrentSortOrder">@i</a>
+                    </li>
+                }
+
+                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                    <a class="page-link"
+                       asp-action="WalletActivationCodes"
+                       asp-route-page="@(ViewBag.CurrentPage + 1)"
+                       asp-route-search="@ViewBag.CurrentSearch"
+                       asp-route-sortBy="@ViewBag.CurrentSortBy"
+                       asp-route-sortOrder="@ViewBag.CurrentSortOrder">Next</a>
+                </li>
+            </ul>
+        </nav>
+    }
+
+    <!-- Add new wallet activation code -->
+    <a asp-action="CreateWalletActivationCode" class="btn btn-primary mt-3">Add New Wallet Activation Code</a>
+</div>
+

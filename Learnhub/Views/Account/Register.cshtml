@@ -1,0 +1,101 @@
+﻿@model Learnhub.Models.User
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center text-primary">Register Learnhub Account</h2>
+
+            <form method="post" id="registerForm" class="p-4 border rounded shadow-sm">
+                <div class="mb-3">
+                    <label asp-for="Username" class="form-label">Username</label>
+                    <input type="text" class="form-control" asp-for="Username" required>
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input type="email" class="form-control" asp-for="Email" required>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="PhoneNumber" class="form-label">Phone</label>
+                    <input type="tel" class="form-control" asp-for="PhoneNumber" required pattern="^1\d{10}$" placeholder="Enter your phone number">
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="PasswordHash" class="form-label">Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" asp-for="PasswordHash" required id="passwordHash">
+                        <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('passwordHash')">👁</button>
+                    </div>
+                    <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ConfirmPasswordHash" class="form-label">Confirm Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" asp-for="ConfirmPasswordHash" required id="confirmPasswordHash">
+                        <button type="button" class="btn btn-outline-secondary" onclick="togglePassword('confirmPasswordHash')">👁</button>
+                    </div>
+                    <span asp-validation-for="ConfirmPasswordHash" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Role" class="form-label">Select Role</label>
+                    <select class="form-select" asp-for="Role" id="roleSelect" onchange="toggleActivationCode()">
+                        <option value="User">Regular User</option>
+                        <option value="Admin">Administrator</option>
+                    </select>
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3" id="activationCodeContainer" style="display: none;">
+                    <label asp-for="AdminActivationCode" class="form-label">Admin Activation Code</label>
+                    <input type="text" class="form-control" asp-for="AdminActivationCode" id="activationCode">
+                    <span asp-validation-for="AdminActivationCode" class="text-danger"></span>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="button" class="btn btn-outline-secondary" onclick="resetForm()">Reset</button>
+                </div>
+            </form>
+
+            <p class="text-center mt-3">Already have an account? <a asp-action="Login" class="text-primary">Login</a></p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        function togglePassword(id) {
+            var input = document.getElementById(id);
+            input.type = input.type === "password" ? "text" : "password";
+        }
+
+        function toggleActivationCode() {
+            var roleSelect = document.getElementById("roleSelect");
+            var activationCodeContainer = document.getElementById("activationCodeContainer");
+
+            if (roleSelect.value === "Admin") {
+                activationCodeContainer.style.display = "block";
+            } else {
+                activationCodeContainer.style.display = "none";
+            }
+        }
+
+        function resetForm() {
+            document.getElementById("registerForm").reset();
+            toggleActivationCode(); // Re-check role selection upon reset
+        }
+    </script>
+}
+

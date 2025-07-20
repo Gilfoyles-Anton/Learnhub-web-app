@@ -1,0 +1,49 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "Personalization";
+    string? currentBackground = ViewBag.CurrentBackground as string;
+    string? uploadError = TempData["UploadError"] as string;
+}
+
+<h2>Choose a Background</h2>
+
+@if (!string.IsNullOrEmpty(currentBackground))
+{
+    <div class="alert alert-info">
+        <strong>Current Background:</strong><br />
+        <img src="@currentBackground" style="max-height:150px; border:1px solid #ccc;" />
+    </div>
+}
+
+<div class="row">
+    @foreach (var img in Model)
+    {
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <img src="@img" class="card-img-top" style="height:200px; object-fit:cover;" />
+                <div class="card-body text-center">
+                    <form asp-action="SetBackground" method="post">
+                        <input type="hidden" name="imagePath" value="@img" />
+                        <button type="submit" class="btn btn-outline-primary btn-sm">Select</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<hr />
+<h3>Or Upload Your Own</h3>
+
+@if (!string.IsNullOrEmpty(uploadError))
+{
+    <div class="alert alert-danger">@uploadError</div>
+}
+
+<form asp-action="UploadBackground" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Select image file (jpg, png, webp, gif):</label>
+        <input type="file" name="customImage" class="form-control" accept="image/*" required />
+    </div>
+    <button type="submit" class="btn btn-success mt-2">Upload & Use</button>
+</form>

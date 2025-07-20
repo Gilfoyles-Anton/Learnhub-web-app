@@ -1,0 +1,151 @@
+﻿@model Learnhub.Models.Course
+@{
+    ViewData["Title"] = "Edit Course";
+
+    // Resolve existing video names and paths,we resolve them
+    var existingVideoNames = new List<string>();
+    var existingVideoPaths = new List<string>();
+
+    if (!string.IsNullOrEmpty(Model.VideoFileNames))
+    {
+        var pairs = Model.VideoFileNames.Split(';');
+        foreach (var pair in pairs)
+        {
+            var parts = pair.Split('|');
+            if (parts.Length == 2)
+            {
+                existingVideoNames.Add(parts[1]);
+            }
+            else
+            {
+                existingVideoNames.Add("");
+            }
+        }
+    }
+
+    if (!string.IsNullOrEmpty(Model.VideoFilePaths))
+    {
+        existingVideoPaths = Model.VideoFilePaths.Split(';').ToList();
+    }
+
+    var existingVideoNamesJson = System.Text.Json.JsonSerializer.Serialize(existingVideoNames);
+    var existingVideoPathsJson = System.Text.Json.JsonSerializer.Serialize(existingVideoPaths);
+}
+
+<div class="container mt-4">
+    <h2>Edit Course</h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            <ul>
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+        </div>
+    }
+
+    <form asp-action="EditCourse" method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group mb-3">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div class="form-group mb-3">
+            <label asp-for="VideoCount">Video Count</label>
+            <input asp-for="VideoCount" type="number" class="form-control" id="videoCountInput" min="0" />
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="CoverImage">Course Cover Image</label>
+            <input type="file" name="CoverImage" id="CoverImage" accept="image/*" class="form-control" />
+            @if (!string.IsNullOrEmpty(Model.CoverImagePath))
+            {
+                <small>Current Image: <a href="@Model.CoverImagePath" target="_blank">View</a></small>
+            }
+        </div>
+
+        <div id="videoUploadContainer" class="form-group mt-3"></div>
+
+        <button type="submit" class="btn btn-success mt-3">Save</button>
+        <a asp-action="Courses" class="btn btn-secondary mt-3">Cancel</a>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        const existingNames = JSON.parse('@Html.Raw(existingVideoNamesJson)');
+        const existingPaths = JSON.parse('@Html.Raw(existingVideoPathsJson)');
+
+        function generateVideoInputs(count, names, paths) {
+            const container = document.getElementById('videoUploadContainer');
+            container.innerHTML = '';
+
+            for (let i = 0; i < count; i++) {
+                // Video upload box
+                const fileInput = document.createElement('input');
+                fileInput.type = 'file';
+                fileInput.name = 'UploadedVideos';
+                fileInput.accept = 'video/*';
+                fileInput.className = 'form-control mb-2';
+                container.appendChild(fileInput);
+
+                // Video name input field
+                const nameInput = document.createElement('input');
+                nameInput.type = 'text';
+                nameInput.name = 'VideoNames';
+                nameInput.placeholder = `Video name (optional) for video #${i + 1}`;
+                nameInput.className = 'form-control mb-2';
+                nameInput.value = (names && names.length > i) ? names[i] : '';
+                container.appendChild(nameInput);
+
+                // Add a video player to display existing videos
+                if (paths && paths.length > i && paths[i]) {
+                    const videoWrapper = document.createElement('div');
+                    videoWrapper.style.marginBottom = '15px';
+
+                    const video = document.createElement('video');
+                    video.controls = true;
+                    video.width = 320;
+                    video.height = 180;
+                    video.src = paths[i];
+                    videoWrapper.appendChild(video);
+
+                    container.appendChild(videoWrapper);
+                }
+            }
+        }
+
+        const videoCountInput = document.getElementById('videoCountInput');
+        videoCountInput.addEventListener('input', function () {
+            const count = parseInt(this.value) || 0;
+            generateVideoInputs(count, [], []);
+        });
+
+        window.onload = function () {
+            const count = parseInt(videoCountInput.value) || 0;
+            generateVideoInputs(count, existingNames, existingPaths);
+        };
+    </script>
+}

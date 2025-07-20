@@ -1,0 +1,383 @@
+﻿@model List<Learnhub.Models.Course>
+@{
+    ViewData["Title"] = "Course Management";
+
+    var currentSearch = Context.Request.Query["search"].ToString();
+    var currentMinPrice = Context.Request.Query["minPrice"].ToString();
+    var currentMaxPrice = Context.Request.Query["maxPrice"].ToString();
+    var currentSortBy = Context.Request.Query["sortBy"].ToString();
+    var currentSortOrder = Context.Request.Query["sortOrder"].ToString();
+
+    int currentPage = 1;
+    if (!string.IsNullOrEmpty(Context.Request.Query["page"])
+        && int.TryParse(Context.Request.Query["page"], out var parsedPage)
+        && parsedPage > 0)
+    {
+        currentPage = parsedPage;
+    }
+
+    var currentViewMode = Context.Request.Query["viewMode"].ToString().ToLower();
+    if (currentViewMode != "card")
+    {
+        currentViewMode = "table";
+    }
+
+    string GetNextOrder(string column) =>
+        currentSortBy == column && currentSortOrder == "asc" ? "desc" : "asc";
+
+    string GetArrow(string column)
+    {
+        if (currentSortBy != column) return "";
+        return currentSortOrder == "asc" ? " ↑" : " ↓";
+    }
+}
+
+<div class="container mt-4">
+    <h2>Course Management</h2>
+
+    <!-- Toggle view button -->
+    <div class="mb-3">
+        <a asp-action="Index"
+           asp-route-viewMode="table"
+           asp-route-search="@currentSearch"
+           asp-route-minPrice="@currentMinPrice"
+           asp-route-maxPrice="@currentMaxPrice"
+           asp-route-sortBy="@currentSortBy"
+           asp-route-sortOrder="@currentSortOrder"
+           asp-route-page="@currentPage"
+           class="btn btn-sm @(currentViewMode == "table" ? "btn-primary" : "btn-outline-primary")">
+            Table View
+        </a>
+        <a asp-action="Index"
+           asp-route-viewMode="card"
+           asp-route-search="@currentSearch"
+           asp-route-minPrice="@currentMinPrice"
+           asp-route-maxPrice="@currentMaxPrice"
+           asp-route-sortBy="@currentSortBy"
+           asp-route-sortOrder="@currentSortOrder"
+           asp-route-page="@currentPage"
+           class="btn btn-sm @(currentViewMode == "card" ? "btn-primary" : "btn-outline-primary")">
+            Card View
+        </a>
+    </div>
+
+    <form asp-action="Index" method="get" class="mb-3">
+        <input type="hidden" name="viewMode" value="@currentViewMode" />
+        <div class="row g-2 align-items-center">
+            <div class="col-md-3">
+                <input type="text" name="search" class="form-control" placeholder="Search courses..." value="@currentSearch" />
+            </div>
+            <div class="col-md-2">
+                <input type="number" step="0.01" name="minPrice" class="form-control" placeholder="Min Price" value="@currentMinPrice" />
+            </div>
+            <div class="col-md-2">
+                <input type="number" step="0.01" name="maxPrice" class="form-control" placeholder="Max Price" value="@currentMaxPrice" />
+            </div>
+            <div class="col-md-5 d-flex">
+                <button type="submit" class="btn btn-outline-primary me-2">Search</button>
+                @if (!string.IsNullOrEmpty(currentSearch) || !string.IsNullOrEmpty(currentMinPrice) || !string.IsNullOrEmpty(currentMaxPrice))
+                {
+                    <a asp-action="Index"
+                       asp-route-viewMode="@currentViewMode"
+                       class="btn btn-outline-secondary me-2">Clear</a>
+                }
+                <a asp-action="Index"
+                   asp-route-viewMode="@currentViewMode"
+                   asp-route-search="@currentSearch"
+                   asp-route-minPrice="@currentMinPrice"
+                   asp-route-maxPrice="@currentMaxPrice"
+                   class="btn btn-outline-dark">Reset Sort</a>
+            </div>
+        </div>
+    </form>
+
+    @* We won't show the add button here, because the home page doesn't normally allow you to add courses, so feel free to do so if you want *@
+    @* <a asp-action="CreateCourse" class="btn btn-primary mb-3">Add New Course</a> *@
+
+    @if (currentViewMode == "card")
+    {
+        <div class="mb-3">
+            <strong>Sort by: </strong>
+            @foreach (var col in new[] { "Title", "Description", "Price", "CreatedAt", "Likes", "Favorites", "Views", "Purchases", "VideoCount" })
+            {
+                var isActive = currentSortBy == col;
+                var arrow = GetArrow(col);
+                <a asp-action="Index"
+                   asp-route-viewMode="card"
+                   asp-route-search="@currentSearch"
+                   asp-route-minPrice="@currentMinPrice"
+                   asp-route-maxPrice="@currentMaxPrice"
+                   asp-route-sortBy="@col"
+                   asp-route-sortOrder="@GetNextOrder(col)"
+                   asp-route-page="@currentPage"
+                   class="btn btn-sm @(isActive ? "btn-primary" : "btn-outline-primary") me-2 mb-1">
+                    @col@arrow
+                </a>
+            }
+        </div>
+    }
+
+    @if (currentViewMode == "table")
+    {
+        <!-- Table Display -->
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        <a asp-action="Index"
+                           asp-route-search="@currentSearch"
+                           asp-route-minPrice="@currentMinPrice"
+                           asp-route-maxPrice="@currentMaxPrice"
+                           asp-route-sortBy="Title"
+                           asp-route-sortOrder="@GetNextOrder("Title")"
+                           asp-route-page="@currentPage"
+                           asp-route-viewMode="table"
+                           class="btn btn-sm btn-link text-decoration-none">
+                            Title@(@GetArrow("Title"))
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-action="Index"
+                           asp-route-search="@currentSearch"
+                           asp-route-minPrice="@currentMinPrice"
+                           asp-route-maxPrice="@currentMaxPrice"
+                           asp-route-sortBy="Description"
+                           asp-route-sortOrder="@GetNextOrder("Description")"
+                           asp-route-page="@currentPage"
+                           asp-route-viewMode="table"
+                           class="btn btn-sm btn-link text-decoration-none">
+                            Description@(@GetArrow("Description"))
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-action="Index"
+                           asp-route-search="@currentSearch"
+                           asp-route-minPrice="@currentMinPrice"
+                           asp-route-maxPrice="@currentMaxPrice"
+                           asp-route-sortBy="Price"
+                           asp-route-sortOrder="@GetNextOrder("Price")"
+                           asp-route-page="@currentPage"
+                           asp-route-viewMode="table"
+                           class="btn btn-sm btn-link text-decoration-none">
+                            Price@(@GetArrow("Price"))
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-action="Index"
+                           asp-route-search="@currentSearch"
+                           asp-route-minPrice="@currentMinPrice"
+                           asp-route-maxPrice="@currentMaxPrice"
+                           asp-route-sortBy="CreatedAt"
+                           asp-route-sortOrder="@GetNextOrder("CreatedAt")"
+                           asp-route-page="@currentPage"
+                           asp-route-viewMode="table"
+                           class="btn btn-sm btn-link text-decoration-none">
+                            Created At@(@GetArrow("CreatedAt"))
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-action="Index"
+                           asp-route-search="@currentSearch"
+                           asp-route-minPrice="@currentMinPrice"
+                           asp-route-maxPrice="@currentMaxPrice"
+                           asp-route-sortBy="Likes"
+                           asp-route-sortOrder="@GetNextOrder("Likes")"
+                           asp-route-page="@currentPage"
+                           asp-route-viewMode="table"
+                           class="btn btn-sm btn-link text-decoration-none">
+                            Likes@(@GetArrow("Likes"))
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-action="Index"
+                           asp-route-search="@currentSearch"
+                           asp-route-minPrice="@currentMinPrice"
+                           asp-route-maxPrice="@currentMaxPrice"
+                           asp-route-sortBy="Favorites"
+                           asp-route-sortOrder="@GetNextOrder("Favorites")"
+                           asp-route-page="@currentPage"
+                           asp-route-viewMode="table"
+                           class="btn btn-sm btn-link text-decoration-none">
+                            Favorites@(@GetArrow("Favorites"))
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-action="Index"
+                           asp-route-search="@currentSearch"
+                           asp-route-minPrice="@currentMinPrice"
+                           asp-route-maxPrice="@currentMaxPrice"
+                           asp-route-sortBy="Views"
+                           asp-route-sortOrder="@GetNextOrder("Views")"
+                           asp-route-page="@currentPage"
+                           asp-route-viewMode="table"
+                           class="btn btn-sm btn-link text-decoration-none">
+                            Views@(@GetArrow("Views"))
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-action="Index"
+                           asp-route-search="@currentSearch"
+                           asp-route-minPrice="@currentMinPrice"
+                           asp-route-maxPrice="@currentMaxPrice"
+                           asp-route-sortBy="Purchases"
+                           asp-route-sortOrder="@GetNextOrder("Purchases")"
+                           asp-route-page="@currentPage"
+                           asp-route-viewMode="table"
+                           class="btn btn-sm btn-link text-decoration-none">
+                            Purchases@(@GetArrow("Purchases"))
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-action="Index"
+                           asp-route-search="@currentSearch"
+                           asp-route-minPrice="@currentMinPrice"
+                           asp-route-maxPrice="@currentMaxPrice"
+                           asp-route-sortBy="VideoCount"
+                           asp-route-sortOrder="@GetNextOrder("VideoCount")"
+                           asp-route-page="@currentPage"
+                           asp-route-viewMode="table"
+                           class="btn btn-sm btn-link text-decoration-none">
+                            Videos@(@GetArrow("VideoCount"))
+                        </a>
+                    </th>
+                    <th><!-- Actions column left empty --></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var course in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-controller="Account" asp-action="PlayCourse" asp-route-id="@course.Id" class="text-decoration-none text-dark fw-bold">
+    @course.Title
+</a>
+
+                            </td>
+                            <td>@course.Description</td>
+                            <td>$@course.Price</td>
+                            <td>@course.CreatedAt.ToShortDateString()</td>
+                            <td>@course.Likes</td>
+                            <td>@course.Favorites</td>
+                            <td>@course.Views</td>
+                            <td>@course.Purchases</td>
+                            <td>@course.VideoCount</td>
+                            <td></td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="11" class="text-center">No courses found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (currentViewMode == "card")
+    {
+        <!-- Card display-->
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var course in Model)
+                {
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            @if (!string.IsNullOrEmpty(course.CoverImagePath))
+                            {
+                                <a asp-controller="Account" asp-action="PlayCourse" asp-route-id="@course.Id">
+    <img src="@course.CoverImagePath" class="card-img-top" alt="@course.Title" style="height:180px; object-fit:cover;" />
+</a>
+
+                            }
+                            else
+                            {
+                                <div class="card-img-top d-flex align-items-center justify-content-center bg-secondary text-white" style="height:180px;">
+                                    <span>No Image</span>
+                                </div>
+                            }
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">@course.Title</h5>
+                                <p class="card-text text-truncate" title="@course.Description">@course.Description</p>
+                                <p class="card-text"><strong>Price:</strong> $@course.Price</p>
+                                <p class="card-text"><small class="text-muted">Created: @course.CreatedAt.ToShortDateString()</small></p>
+                                <p class="card-text mb-1">
+                                    <small>
+                                        Likes: @course.Likes &nbsp;&nbsp;
+                                        Favorites: @course.Favorites &nbsp;&nbsp;
+                                        Views: @course.Views &nbsp;&nbsp;
+                                        Purchases: @course.Purchases &nbsp;&nbsp;
+                                        Videos: @course.VideoCount
+                                    </small>
+                                </p>
+                                @* Remove the delete and edit buttons in card mode *@
+                                @* <div class="mt-auto d-flex justify-content-between">
+                                    <form asp-action="DeleteCourse" asp-route-id="@course.Id" method="post" onsubmit="return confirm('Are you sure you want to delete this course?');" style="display:inline;">
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                    <a asp-controller="Account" asp-action="EditCourse" asp-route-id="@course.Id" class="btn btn-sm btn-secondary">Edit</a>
+                                </div> *@
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center">
+                    <p>No courses found.</p>
+                </div>
+            }
+        </div>
+    }
+
+    <!-- Pagination navigation -->
+    @if (ViewBag.TotalPages > 1)
+    {
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                    <a class="page-link"
+                       asp-action="Index"
+                       asp-route-page="@(ViewBag.CurrentPage - 1)"
+                       asp-route-search="@currentSearch"
+                       asp-route-minPrice="@currentMinPrice"
+                       asp-route-maxPrice="@currentMaxPrice"
+                       asp-route-sortBy="@currentSortBy"
+                       asp-route-sortOrder="@currentSortOrder"
+                       asp-route-viewMode="@currentViewMode">Previous</a>
+                </li>
+
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                        <a class="page-link"
+                           asp-action="Index"
+                           asp-route-page="@i"
+                           asp-route-search="@currentSearch"
+                           asp-route-minPrice="@currentMinPrice"
+                           asp-route-maxPrice="@currentMaxPrice"
+                           asp-route-sortBy="@currentSortBy"
+                           asp-route-sortOrder="@currentSortOrder"
+                           asp-route-viewMode="@currentViewMode">@i</a>
+                    </li>
+                }
+
+                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                    <a class="page-link"
+                       asp-action="Index"
+                       asp-route-page="@(ViewBag.CurrentPage + 1)"
+                       asp-route-search="@currentSearch"
+                       asp-route-minPrice="@currentMinPrice"
+                       asp-route-maxPrice="@currentMaxPrice"
+                       asp-route-sortBy="@currentSortBy"
+                       asp-route-sortOrder="@currentSortOrder"
+                       asp-route-viewMode="@currentViewMode">Next</a>
+                </li>
+            </ul>
+        </nav>
+    }
+</div>

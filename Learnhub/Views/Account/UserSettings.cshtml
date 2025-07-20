@@ -1,0 +1,78 @@
+﻿@model Learnhub.Models.UserSettingsViewModel
+@{
+    ViewData["Title"] = "Settings";
+
+    var userId = Context.Session.GetString("UserId");
+    var avatarUrl = $"/images/{userId}_avatar.png?ts={DateTime.Now.Ticks}";
+    var fallbackUrl = "/images/default-avatar.png";
+}
+
+<h2 class="mb-4">User Settings</h2>
+
+<!-- Avatar Upload Section -->
+<form asp-action="UpdateAvatar" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label class="form-label">Current Avatar</label><br />
+        <img src="@avatarUrl" onerror="this.onerror=null;this.src='@fallbackUrl';" class="rounded-circle mb-2" width="80" alt="Avatar" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Upload New Avatar</label>
+        <input type="file" name="NewAvatar" class="form-control" required />
+    </div>
+
+    <button type="submit" class="btn btn-secondary">Update Avatar</button>
+</form>
+
+<hr />
+
+<!-- User Settings Form -->
+<form asp-action="Settings" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label class="form-label">Current Email</label>
+        <input asp-for="OldEmail" class="form-control" />
+        <span asp-validation-for="OldEmail" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Current Phone</label>
+        <input asp-for="OldPhone" class="form-control" />
+        <span asp-validation-for="OldPhone" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">New Username</label>
+        <input asp-for="NewUsername" class="form-control" />
+        <span asp-validation-for="NewUsername" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">New Email</label>
+        <input asp-for="NewEmail" class="form-control" />
+        <span asp-validation-for="NewEmail" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">New Phone</label>
+        <input asp-for="NewPhone" class="form-control" />
+        <span asp-validation-for="NewPhone" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Current Password</label>
+        <input asp-for="OldPassword" type="password" class="form-control" />
+        <span asp-validation-for="OldPassword" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">New Password</label>
+        <input asp-for="NewPassword" type="password" class="form-control" />
+        <span asp-validation-for="NewPassword" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

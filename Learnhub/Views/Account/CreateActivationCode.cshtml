@@ -1,0 +1,51 @@
+﻿@model Learnhub.Models.AdminActivationCode
+
+@{
+    ViewData["Title"] = "Create Activation Code";
+    var users = ViewBag.Users as List<Learnhub.Models.User>;
+}
+
+<div class="container mt-4">
+    <h2>Add New Activation Code</h2>
+
+    <form asp-action="CreateActivationCode" method="post">
+        <div class="mb-3">
+            <label asp-for="ActivationCode" class="form-label"></label>
+            <input asp-for="ActivationCode" class="form-control" />
+            <span asp-validation-for="ActivationCode" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Status" class="form-label"></label>
+            <select asp-for="Status" class="form-select">
+                <option value="unused">unused</option>
+                <option value="used">used</option>
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="CodeId" class="form-label"></label>
+            <input asp-for="CodeId" class="form-control" />
+            <span asp-validation-for="CodeId" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="UsedByUserId" class="form-label"></label>
+            <select asp-for="UsedByUserId" class="form-select">
+                <option value="">—</option>
+                @if (users != null)
+                {
+                    foreach (var user in users)
+                    {
+                        <option value="@user.Id">@user.Username (@user.Id)</option>
+                    }
+                }
+            </select>
+            <span asp-validation-for="UsedByUserId" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-action="ActivationCodes" class="btn btn-secondary ms-2">Cancel</a>
+    </form>
+</div>

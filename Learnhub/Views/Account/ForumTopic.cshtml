@@ -1,0 +1,289 @@
+﻿@model List<Learnhub.Models.ForumTopic>
+
+@{
+    ViewData["Title"] = "Forum Topics";
+
+    var currentSearch = Context.Request.Query["search"].ToString();
+    var currentSortBy = Context.Request.Query["sortBy"].ToString();
+    var currentSortOrder = Context.Request.Query["sortOrder"].ToString();
+
+    int currentPage = 1;
+    if (!string.IsNullOrEmpty(Context.Request.Query["page"])
+        && int.TryParse(Context.Request.Query["page"], out var parsedPage)
+        && parsedPage > 0)
+    {
+        currentPage = parsedPage;
+    }
+
+    var currentViewMode = Context.Request.Query["viewMode"].ToString().ToLower();
+    if (currentViewMode != "card")
+    {
+        currentViewMode = "table";
+    }
+
+    string GetNextOrder(string column) =>
+        currentSortBy == column && currentSortOrder == "asc" ? "desc" : "asc";
+
+    string GetArrow(string column)
+    {
+        if (currentSortBy != column) return "";
+        return currentSortOrder == "asc" ? " ↑" : " ↓";
+    }
+}
+
+<div class="container mt-4">
+    <h2>Forum Topics</h2>
+
+    <!-- Switch View Button -->
+    <div class="mb-3">
+        <a asp-action="Index"
+           asp-route-viewMode="table"
+           asp-route-search="@currentSearch"
+           asp-route-sortBy="@currentSortBy"
+           asp-route-sortOrder="@currentSortOrder"
+           asp-route-page="@currentPage"
+           class="btn btn-sm @(currentViewMode == "table" ? "btn-primary" : "btn-outline-primary")">
+            Table View
+        </a>
+        <a asp-action="Index"
+           asp-route-viewMode="card"
+           asp-route-search="@currentSearch"
+           asp-route-sortBy="@currentSortBy"
+           asp-route-sortOrder="@currentSortOrder"
+           asp-route-page="@currentPage"
+           class="btn btn-sm @(currentViewMode == "card" ? "btn-primary" : "btn-outline-primary")">
+            Card View
+        </a>
+    </div>
+
+    <!-- Search box -->
+    <form asp-action="Index" method="get" class="mb-3">
+        <input type="hidden" name="viewMode" value="@currentViewMode" />
+        <div class="row g-2 align-items-center">
+            <div class="col-md-4">
+                <input type="text" name="search" class="form-control" placeholder="Search topics..." value="@currentSearch" />
+            </div>
+            <div class="col-md-8 d-flex">
+                <button type="submit" class="btn btn-outline-primary me-2">Search</button>
+                @if (!string.IsNullOrEmpty(currentSearch))
+                {
+                    <a asp-action="Index"
+                       asp-route-viewMode="@currentViewMode"
+                       class="btn btn-outline-secondary me-2">Clear</a>
+                }
+                <a asp-action="Index"
+                   asp-route-viewMode="@currentViewMode"
+                   asp-route-search="@currentSearch"
+                   class="btn btn-outline-dark">Reset Sort</a>
+            </div>
+        </div>
+    </form>
+
+    <a asp-action="Edit" class="btn btn-primary mb-3">Create New Topic</a>
+
+    @if (currentViewMode == "card")
+    {
+        <div class="mb-3">
+            <strong>Sort by: </strong>
+            @foreach (var col in new[] { "Title", "CreatedAt", "Likes", "Views", "ParticipantsCount" })
+            {
+                var isActive = currentSortBy == col;
+                var arrow = GetArrow(col);
+                <a asp-action="Index"
+                   asp-route-viewMode="card"
+                   asp-route-search="@currentSearch"
+                   asp-route-sortBy="@col"
+                   asp-route-sortOrder="@GetNextOrder(col)"
+                   asp-route-page="@currentPage"
+                   class="btn btn-sm @(isActive ? "btn-primary" : "btn-outline-primary") me-2 mb-1">
+                    @col@arrow
+                </a>
+            }
+        </div>
+    }
+
+    @if (currentViewMode == "table")
+    {
+        <!-- Table view -->
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        <a asp-action="Index"
+                           asp-route-search="@currentSearch"
+                           asp-route-sortBy="Title"
+                           asp-route-sortOrder="@GetNextOrder("Title")"
+                           asp-route-page="@currentPage"
+                           asp-route-viewMode="table"
+                           class="btn btn-sm btn-link text-decoration-none">
+                            Title@(@GetArrow("Title"))
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-action="Index"
+                           asp-route-search="@currentSearch"
+                           asp-route-sortBy="CreatedAt"
+                           asp-route-sortOrder="@GetNextOrder("CreatedAt")"
+                           asp-route-page="@currentPage"
+                           asp-route-viewMode="table"
+                           class="btn btn-sm btn-link text-decoration-none">
+                            Created At@(@GetArrow("CreatedAt"))
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-action="Index"
+                           asp-route-search="@currentSearch"
+                           asp-route-sortBy="Likes"
+                           asp-route-sortOrder="@GetNextOrder("Likes")"
+                           asp-route-page="@currentPage"
+                           asp-route-viewMode="table"
+                           class="btn btn-sm btn-link text-decoration-none">
+                            Likes@(@GetArrow("Likes"))
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-action="Index"
+                           asp-route-search="@currentSearch"
+                           asp-route-sortBy="Views"
+                           asp-route-sortOrder="@GetNextOrder("Views")"
+                           asp-route-page="@currentPage"
+                           asp-route-viewMode="table"
+                           class="btn btn-sm btn-link text-decoration-none">
+                            Views@(@GetArrow("Views"))
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-action="Index"
+                           asp-route-search="@currentSearch"
+                           asp-route-sortBy="ParticipantsCount"
+                           asp-route-sortOrder="@GetNextOrder("ParticipantsCount")"
+                           asp-route-page="@currentPage"
+                           asp-route-viewMode="table"
+                           class="btn btn-sm btn-link text-decoration-none">
+                            Participants@(@GetArrow("ParticipantsCount"))
+                        </a>
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var topic in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@topic.Id" class="text-decoration-none">
+                                    @topic.Title
+                                </a>
+                            </td>
+                            <td>@topic.CreatedAt.ToString("yyyy-MM-dd")</td>
+                            <td>@topic.Likes</td>
+                            <td>@topic.Views</td>
+                            <td>@topic.ParticipantsCount</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@topic.Id" class="btn btn-sm btn-secondary me-1">Edit</a>
+                                <form asp-action="Delete" asp-route-id="@topic.Id" method="post" onsubmit="return confirm('Are you sure?');" style="display:inline;">
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6" class="text-center">No topics found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (currentViewMode == "card")
+    {
+        <!-- Card view -->
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var topic in Model)
+                {
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            @if (!string.IsNullOrEmpty(topic.CoverImagePath))
+                            {
+                                <img src="~/uploads/forum/@System.IO.Path.GetFileName(topic.CoverImagePath)" class="card-img-top" alt="Topic Image" style="height: 200px; object-fit: cover;" />
+                            }
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">
+                                    <a asp-action="Edit" asp-route-id="@topic.Id" class="text-decoration-none">@topic.Title</a>
+                                </h5>
+                                <p class="card-text text-truncate" title="@topic.Description">@topic.Description</p>
+                                <p class="card-text mb-1"><small class="text-muted">Created: @topic.CreatedAt.ToString("yyyy-MM-dd")</small></p>
+                                <p class="card-text mb-1">
+                                    <small>
+                                        Likes: @topic.Likes &nbsp;&nbsp;
+                                        Views: @topic.Views &nbsp;&nbsp;
+                                        Participants: @topic.ParticipantsCount
+                                    </small>
+                                </p>
+                                <div class="mt-auto d-flex justify-content-between">
+                                    <a asp-action="Edit" asp-route-id="@topic.Id" class="btn btn-sm btn-secondary">Edit</a>
+                                    <form asp-action="Delete" asp-route-id="@topic.Id" method="post" onsubmit="return confirm('Are you sure?');" style="display:inline;">
+                                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12 text-center">
+                    <p>No topics found.</p>
+                </div>
+            }
+        </div>
+    }
+
+    <!-- Page navigation -->
+    @if (ViewBag.TotalPages > 1)
+    {
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li class="page-item @(ViewBag.CurrentPage == 1 ? "disabled" : "")">
+                    <a class="page-link"
+                       asp-action="Index"
+                       asp-route-page="@(ViewBag.CurrentPage - 1)"
+                       asp-route-search="@currentSearch"
+                       asp-route-sortBy="@currentSortBy"
+                       asp-route-sortOrder="@currentSortOrder"
+                       asp-route-viewMode="@currentViewMode">Previous</a>
+                </li>
+
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                        <a class="page-link"
+                           asp-action="Index"
+                           asp-route-page="@i"
+                           asp-route-search="@currentSearch"
+                           asp-route-sortBy="@currentSortBy"
+                           asp-route-sortOrder="@currentSortOrder"
+                           asp-route-viewMode="@currentViewMode">@i</a>
+                    </li>
+                }
+
+                <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages ? "disabled" : "")">
+                    <a class="page-link"
+                       asp-action="Index"
+                       asp-route-page="@(ViewBag.CurrentPage + 1)"
+                       asp-route-search="@currentSearch"
+                       asp-route-sortBy="@currentSortBy"
+                       asp-route-sortOrder="@currentSortOrder"
+                       asp-route-viewMode="@currentViewMode">Next</a>
+                </li>
+            </ul>
+        </nav>
+    }
+</div>

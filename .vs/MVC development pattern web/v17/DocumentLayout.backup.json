@@ -1,0 +1,490 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\controllers\\personalizationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\controllers\\personalizationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\personalization.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\personalization.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\users.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\models\\adminactivationcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\models\\adminactivationcode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\activationcodes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\activationcodes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\adminprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\adminprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\adminsettings.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\adminsettings.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\courses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\courses.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\createactivationcode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\createactivationcode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\createcourse.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\createcourse.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\createuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\createuser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\createwalletactivationcode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\createwalletactivationcode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\editactivationcode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\editactivationcode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\editcourse.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\editcourse.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\editforumtopic.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\editforumtopic.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\edituser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\edituser.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\editwalletactivationcode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\editwalletactivationcode.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\forumtopic.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\forumtopic.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\playcourse.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\playcourse.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\usersettings.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\usersettings.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\account\\walletactivationcodes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\account\\walletactivationcodes.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\controllers\\coursecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\models\\usercourseinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\models\\usercourseinteraction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{7f40df72-066b-4810-a08b-c0fbed76c948}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Users.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\Users.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\Users.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\Users.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\Users.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-20T06:20:12.726Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PersonalizationController.cs",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Controllers\\PersonalizationController.cs",
+              "RelativeDocumentMoniker": "Learnhub\\Controllers\\PersonalizationController.cs",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Controllers\\PersonalizationController.cs",
+              "RelativeToolTip": "Learnhub\\Controllers\\PersonalizationController.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAIwAYAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-19T14:31:55.746Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CreateUser.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\CreateUser.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\CreateUser.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\CreateUser.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\CreateUser.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:45:15.263Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CreateWalletActivationCode.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\CreateWalletActivationCode.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\CreateWalletActivationCode.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\CreateWalletActivationCode.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\CreateWalletActivationCode.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:45:14.647Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CreateActivationCode.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\CreateActivationCode.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\CreateActivationCode.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\CreateActivationCode.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\CreateActivationCode.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:44:31.792Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Courses.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\Courses.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\Courses.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\Courses.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\Courses.cshtml",
+              "ViewState": "AgIAAHcBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:44:23.513Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AdminSettings.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\AdminSettings.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\AdminSettings.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\AdminSettings.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\AdminSettings.cshtml",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:44:18.927Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Personalization.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\Personalization.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\Personalization.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\Personalization.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\Personalization.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:45:06.649Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Learnhub\\Models\\User.cs",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Models\\User.cs",
+              "RelativeToolTip": "Learnhub\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-20T04:11:07.362Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Learnhub\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Learnhub\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAADsCAAAAAAAAAAAQwFwCAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-19T13:42:52.005Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AdminActivationCode.cs",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Models\\AdminActivationCode.cs",
+              "RelativeDocumentMoniker": "Learnhub\\Models\\AdminActivationCode.cs",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Models\\AdminActivationCode.cs",
+              "RelativeToolTip": "Learnhub\\Models\\AdminActivationCode.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-20T04:10:35.725Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AdminProfile.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\AdminProfile.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\AdminProfile.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\AdminProfile.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\AdminProfile.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAADQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:43:14.181Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CreateCourse.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\CreateCourse.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\CreateCourse.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\CreateCourse.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\CreateCourse.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:45:17.916Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ActivationCodes.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\ActivationCodes.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\ActivationCodes.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\ActivationCodes.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\ActivationCodes.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:43:09.752Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "EditActivationCode.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\EditActivationCode.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\EditActivationCode.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\EditActivationCode.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\EditActivationCode.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:45:13.933Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "EditCourse.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\EditCourse.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\EditCourse.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\EditCourse.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\EditCourse.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:45:13.013Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "EditForumTopic.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\EditForumTopic.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\EditForumTopic.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\EditForumTopic.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\EditForumTopic.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:45:12.371Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "EditUser.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\EditUser.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\EditUser.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\EditUser.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\EditUser.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:45:11.52Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "EditWalletActivationCode.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\EditWalletActivationCode.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\EditWalletActivationCode.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\EditWalletActivationCode.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\EditWalletActivationCode.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:45:10.858Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ForumTopic.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\ForumTopic.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\ForumTopic.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\ForumTopic.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\ForumTopic.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:45:10.158Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:45:07.21Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "PlayCourse.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\PlayCourse.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\PlayCourse.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\PlayCourse.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\PlayCourse.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:45:05.733Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\Register.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\Register.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:45:05.034Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "UserSettings.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\UserSettings.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\UserSettings.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\UserSettings.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\UserSettings.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:45:04.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "WalletActivationCodes.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\WalletActivationCodes.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\WalletActivationCodes.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\WalletActivationCodes.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Account\\WalletActivationCodes.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:45:03.26Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Learnhub\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Learnhub\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAABsAAABHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-19T13:44:33.952Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "CourseController.cs",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Controllers\\CourseController.cs",
+              "RelativeDocumentMoniker": "Learnhub\\Controllers\\CourseController.cs",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Controllers\\CourseController.cs",
+              "RelativeToolTip": "Learnhub\\Controllers\\CourseController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-19T13:42:53.897Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "UserCourseInteraction.cs",
+              "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Models\\UserCourseInteraction.cs",
+              "RelativeDocumentMoniker": "Learnhub\\Models\\UserCourseInteraction.cs",
+              "ToolTip": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Models\\UserCourseInteraction.cs",
+              "RelativeToolTip": "Learnhub\\Models\\UserCourseInteraction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-19T13:41:12.683Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+﻿@model Learnhub.Models.User
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-5">
+    <div class="alert alert-primary shadow-sm rounded-3" role="alert">
+        <h4 class="mb-0">
+            👋 Welcome, Administrator <strong>@Model.Username</strong>!
+        </h4>
+    </div>
+
+    <div class="card shadow-lg rounded-4 p-4">
+        <h3 class="mb-4 border-bottom pb-2">Admin Panel</h3>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex align-items-center gap-3 hover-shadow rounded-3 mb-2 transition-shadow" style="cursor:pointer;">
+                <i class="bi bi-people-fill fs-4 text-primary"></i>
+                <a class="flex-grow-1 text-decoration-none fw-semibold fs-5" asp-controller="Account" asp-action="Users">User Management</a>
+                <i class="bi bi-arrow-right fs-5 text-muted"></i>
+            </li>
+            <li class="list-group-item d-flex align-items-center gap-3 hover-shadow rounded-3 mb-2 transition-shadow" style="cursor:pointer;">
+                <i class="bi bi-journal-bookmark-fill fs-4 text-success"></i>
+                <a class="flex-grow-1 text-decoration-none fw-semibold fs-5" asp-controller="Account" asp-action="Courses">Course Management</a>
+                <i class="bi bi-arrow-right fs-5 text-muted"></i>
+            </li>
+            <li class="list-group-item d-flex align-items-center gap-3 hover-shadow rounded-3 mb-2 transition-shadow" style="cursor:pointer;">
+                <i class="bi bi-key-fill fs-4 text-warning"></i>
+                <a class="flex-grow-1 text-decoration-none fw-semibold fs-5" asp-controller="Account" asp-action="ActivationCodes">Activation Code Review</a>
+                <i class="bi bi-arrow-right fs-5 text-muted"></i>
+            </li>
+            <li class="list-group-item d-flex align-items-center gap-3 hover-shadow rounded-3 mb-0 transition-shadow" style="cursor:pointer;">
+                <i class="bi bi-wallet2 fs-4 text-info"></i>
+                <a class="flex-grow-1 text-decoration-none fw-semibold fs-5" asp-controller="Account" asp-action="WalletActivationCodes">Wallet Activation Code Management</a>
+                <i class="bi bi-arrow-right fs-5 text-muted"></i>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<style>
+    /* Mouse hover shadow effect */
+    .hover-shadow:hover {
+        box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 0.15);
+        background-color: #f8f9fa;
+        transition: all 0.3s ease;
+    }
+
+    .transition-shadow {
+        transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+</style>
+
+<!-- Introduction Bootstrap Icons CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+
+
