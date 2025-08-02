@@ -29,6 +29,23 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
     public DbSet<ForumTopic> ForumTopics { get; set; }
 
+    public DbSet<ComplaintTopic> ComplaintTopics { get; set; }
+
+    public DbSet<CourseComment> CourseComments { get; set; }
+    public DbSet<CourseCommentLike> CourseCommentLikes { get; set; }
+
+    public DbSet<ForumComment> ForumComments { get; set; }
+    public DbSet<ForumCommentLike> ForumCommentLikes { get; set; }
+
+    public DbSet<UserForumTopicInteraction> UserForumTopicInteractions { get; set; }
+
+    public DbSet<ComplaintComment> ComplaintComments { get; set; }
+    public DbSet<ComplaintCommentLike> ComplaintCommentLikes { get; set; }
+    public DbSet<UserComplaintTopicInteraction> UserComplaintTopicInteractions { get; set; }
+
+
+
+
 
 
 }

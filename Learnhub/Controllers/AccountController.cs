@@ -547,17 +547,81 @@ public class AccountController(ApplicationDbContext _context) : Controller
         }
     }
 
-
-    public async Task<IActionResult> PlayCourse(int id)
+    // Course playback page: Load comments for the current page and retain pagination.
+    [HttpGet]
+    public async Task<IActionResult> PlayCourse(int id, int pageNumber = 1)
     {
         var course = await _context.Courses.FindAsync(id);
-        if (course == null)
-        {
-            return NotFound();
-        }
+        if (course == null) return NotFound();
 
-        return View(course);
+        // Logged-in user
+        string? sessionUserId = HttpContext.Session.GetString("UserId");
+        int? currentUserId = null;
+        if (!string.IsNullOrEmpty(sessionUserId) && int.TryParse(sessionUserId, out int uid))
+            currentUserId = uid;
+
+        // Page setting
+        int pageSize = 10;
+        int skip = (pageNumber - 1) * pageSize;
+
+        // Total number of comments
+        var totalComments = await _context.CourseComments.CountAsync(c => c.CourseId == id);
+
+        // Query the comments on the current page
+        var commentsRaw = await _context.CourseComments
+            .Include(c => c.User)
+            .Where(c => c.CourseId == id)
+            .OrderByDescending(c => c.CreatedAt)
+            .Skip(skip)
+            .Take(pageSize)
+            .ToListAsync();
+
+        // Which users have made a purchase?
+        var userIds = commentsRaw.Select(c => c.UserId).Distinct().ToList();
+        var purchasedSet = new HashSet<int>(
+            await _context.UserCourseInteractions
+                .Where(i => i.CourseId == id && i.IsPurchased && userIds.Contains(i.UserId))
+                .Select(i => i.UserId)
+                .ToListAsync()
+        );
+
+        // Comments that the current user has liked
+        var likedCommentIds = currentUserId.HasValue
+            ? await _context.CourseCommentLikes
+                .Where(l => l.UserId == currentUserId.Value)
+                .Select(l => l.CommentId).ToListAsync()
+            : new List<int>();
+
+        // Project onto the ViewModel
+        var comments = commentsRaw.Select(c => new CommentViewModel
+        {
+            Id = c.Id,
+            Content = c.Content,
+            CreatedAt = c.CreatedAt,
+            LikeCount = c.LikeCount,
+            UserName = c.User.Username,
+            UserAvatarUrl = string.IsNullOrEmpty(c.User.BackgroundImagePath)
+                ? "/images/default-avatar.png"
+                : (c.User.BackgroundImagePath.StartsWith('/')
+                   ? c.User.BackgroundImagePath
+                   : "/images/" + c.User.BackgroundImagePath),
+            UserHasPurchased = purchasedSet.Contains(c.UserId),
+            CurrentUserLiked = likedCommentIds.Contains(c.Id)
+        }).ToList();
+
+        var model = new CourseDetailViewModel
+        {
+            Course = course,
+            Comments = comments,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalComments = totalComments
+        };
+
+        return View(model);
     }
+
+
 
 
     public async Task<IActionResult> Users(

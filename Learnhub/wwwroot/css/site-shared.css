@@ -1,0 +1,581 @@
+﻿/* site-shared.css */
+
+/*—— Global foundation——*/
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/*—— Global fade-in ——*/
+.fade-in,
+.table-responsive,
+.card,
+form,
+.alert,
+.toast {
+    animation: fadeIn 2.5s ease-out both;
+}
+
+/*—— Title Animation ——*/
+h1, h2, h3, h4, h5, h6 {
+    animation: fadeInDown 2s ease-out both;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/*—— Shared buttons ——*/
+.btn {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
+    background-size: 600% 600%;
+    animation: gradientShift 10s ease infinite;
+    color: #fff;
+    border: 2px solid transparent;
+}
+
+.btn-secondary {
+    background: none;
+    color: #2575fc;
+    border: 2px solid #2575fc;
+}
+
+    .btn-secondary:hover {
+        background: linear-gradient(270deg, #6a11cb, #2575fc, #6a11cb);
+        background-size: 600% 600%;
+        animation: gradientShift 10s ease infinite;
+        color: #fff;
+    }
+
+.btn:hover {
+    animation: btnPulse 1.8s ease-out both;
+    transform: scale(1.07) rotate(-1deg);
+    box-shadow: 0 8px 20px rgba(37, 117, 252, 0.4);
+}
+
+/*—— Card Hover ——*/
+.card {
+    border: none;
+    border-radius: 12px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+    .card:hover {
+        animation: cardLift 2s ease-out both;
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+    }
+
+/*—— Navigation link Hover ——*/
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 0;
+        height: 2px;
+        background: #2575fc;
+        transition: width 0.4s ease;
+    }
+
+    .nav-link:hover {
+        color: #2575fc;
+    }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+/*—— Table row Hover ——*/
+.table-hover tbody tr:hover {
+    animation: rowPulse 1.6s ease-out both;
+}
+
+/*—— Page Navigation & Link Hover ——*/
+.pagination .page-link,
+a.text-decoration-none:hover {
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+    .pagination .page-link:hover,
+    a.text-decoration-none:hover {
+        transform: scale(1.1);
+        color: #2575fc !important;
+    }
+
+/*—— Form control ——*/
+.form-control {
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+    .form-control:focus {
+        border-color: #2575fc;
+        box-shadow: 0 0 8px rgba(37, 117, 252, 0.5);
+    }
+
+/*—— Badge Hover ——*/
+.badge {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+    .badge:hover {
+        transform: scale(1.1);
+        background-color: #2575fc;
+        color: #fff;
+    }
+
+/*—— Warning & Toast ——*/
+.alert, .toast {
+    border-radius: 8px;
+    animation: fadeInDown 1.5s ease-out both;
+}
+
+.alert-dismissible .btn-close {
+    transition: transform 0.3s ease;
+}
+
+    .alert-dismissible .btn-close:hover {
+        transform: rotate(90deg) scale(1.2);
+    }
+
+/*—— Drop-down menu ——*/
+.dropdown-menu {
+    animation: slideDown 0.8s ease-out both;
+}
+
+/*—— Modal box ——*/
+.modal.fade .modal-dialog {
+    transform: translateY(-50px);
+    transition: transform 0.6s ease-out;
+}
+
+.modal.show .modal-dialog {
+    transform: translateY(0);
+}
+
+/*—— Top-level Spinner animation ——*/
+/* Flower Spinner */
+.flower-spinner, .flower-spinner * {
+    box-sizing: border-box;
+}
+
+.flower-spinner {
+    height: 70px;
+    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .flower-spinner .dots-container {
+        height: calc(70px / 7);
+        width: calc(70px / 7);
+    }
+
+    .flower-spinner .smaller-dot,
+    .flower-spinner .bigger-dot {
+        background: #ff1d5e;
+        border-radius: 50%;
+    }
+
+    .flower-spinner .smaller-dot {
+        animation: flower-spinner-smaller-dot-animation 2.5s infinite both;
+    }
+
+    .flower-spinner .bigger-dot {
+        padding: 10%;
+        animation: flower-spinner-bigger-dot-animation 2.5s infinite both;
+    }
+
+/* Pixel Spinner */
+.pixel-spinner, .pixel-spinner * {
+    box-sizing: border-box;
+}
+
+.pixel-spinner {
+    height: 70px;
+    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .pixel-spinner .pixel-spinner-inner {
+        width: calc(70px / 7);
+        height: calc(70px / 7);
+        background-color: #ff1d5e;
+        box-shadow: 15px 15px 0 0, -15px -15px 0 0, 15px -15px 0 0, -15px 15px 0 0, 0 15px 0 0, 15px 0 0 0, -15px 0 0 0, 0 -15px 0 0;
+        animation: pixel-spinner-animation 2000ms linear infinite;
+    }
+
+/* Orbit Spinner */
+.orbit-spinner, .orbit-spinner * {
+    box-sizing: border-box;
+}
+
+.orbit-spinner {
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+    perspective: 800px;
+    position: relative;
+}
+
+    .orbit-spinner .orbit {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+
+        .orbit-spinner .orbit:nth-child(1) {
+            border-bottom: 3px solid #ff1d5e;
+            animation: orbit-spinner-orbit-one-animation 1200ms linear infinite;
+        }
+
+        .orbit-spinner .orbit:nth-child(2) {
+            border-right: 3px solid #ff1d5e;
+            animation: orbit-spinner-orbit-two-animation 1200ms linear infinite;
+        }
+
+        .orbit-spinner .orbit:nth-child(3) {
+            border-top: 3px solid #ff1d5e;
+            animation: orbit-spinner-orbit-three-animation 1200ms linear infinite;
+        }
+
+/* Atom Spinner */
+.atom-spinner, .atom-spinner * {
+    box-sizing: border-box;
+}
+
+.atom-spinner {
+    height: 60px;
+    width: 60px;
+    position: relative;
+}
+
+    .atom-spinner .spinner-line {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        border-left: calc(60px/25) solid #ff1d5e;
+        border-top: calc(60px/25) solid transparent;
+    }
+
+        .atom-spinner .spinner-line:nth-child(1) {
+            animation: atom-spinner-animation-1 1s linear infinite;
+            transform: rotateZ(120deg) rotateX(66deg);
+        }
+
+        .atom-spinner .spinner-line:nth-child(2) {
+            animation: atom-spinner-animation-2 1s linear infinite;
+            transform: rotateZ(240deg) rotateX(66deg);
+        }
+
+        .atom-spinner .spinner-line:nth-child(3) {
+            animation: atom-spinner-animation-3 1s linear infinite;
+            transform: rotateZ(360deg) rotateX(66deg);
+        }
+
+/* Fingerprint Spinner */
+.fingerprint-spinner, .fingerprint-spinner * {
+    box-sizing: border-box;
+}
+
+.fingerprint-spinner {
+    height: 64px;
+    width: 64px;
+    position: relative;
+}
+
+    .fingerprint-spinner .spinner-ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        border-top-color: #ff1d5e;
+        animation: fingerprint-spinner-animation 1500ms cubic-bezier(0.68,-0.75,0.265,1.75) infinite;
+    }
+
+        .fingerprint-spinner .spinner-ring:nth-child(n) {
+            animation-delay: calc(50ms * var(--i));
+        }
+
+/* Semipolar Spinner */
+.semipolar-spinner, .semipolar-spinner * {
+    box-sizing: border-box;
+}
+
+.semipolar-spinner {
+    height: 65px;
+    width: 65px;
+    position: relative;
+}
+
+    .semipolar-spinner .ring {
+        position: absolute;
+        border-radius: 50%;
+        border: calc(65px * 0.05) solid transparent;
+        border-top-color: #ff1d5e;
+        animation: semipolar-spinner-animation 2s infinite;
+    }
+
+        .semipolar-spinner .ring:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .semipolar-spinner .ring:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .semipolar-spinner .ring:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .semipolar-spinner .ring:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        .semipolar-spinner .ring:nth-child(5) {
+            animation-delay: 0.8s;
+        }
+
+/*—— Text animation ——*/
+/* Ensure that each letter block is displayed within the line. */
+.letter {
+    display: inline-block;
+    line-height: 1em;
+}
+
+/* Underline "ml1" line */
+.ml1 .line {
+    opacity: 0;
+    transform-origin: 0 0;
+}
+
+/* The default transparency of containers ml1 to ml13 is controlled by JavaScript. */
+.ml1, .ml2, .ml6, .ml7, .ml13 {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+/*—— Keyframe animation ——*/
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes rowPulse {
+    0% {
+        background-color: transparent;
+        transform: scale(1);
+    }
+
+    50% {
+        background-color: #eef3f7;
+        transform: scale(1.02);
+    }
+
+    100% {
+        background-color: transparent;
+        transform: scale(1);
+    }
+}
+
+@keyframes btnPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes cardLift {
+    0% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    50% {
+        transform: translateY(-12px) scale(1.03);
+        box-shadow: 0 16px 32px rgba(0,0,0,0.2);
+    }
+
+    100% {
+        transform: translateY(0) scale(1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes flower-spinner-bigger-dot-animation {
+    0% {
+        box-shadow: none;
+    }
+
+    25%,75% {
+        box-shadow: 26px 0 0 #ff1d5e, -26px 0 0 #ff1d5e, 0 26px 0 #ff1d5e, 0 -26px 0 #ff1d5e, 19px -19px 0 #ff1d5e, 19px 19px 0 #ff1d5e, -19px -19px 0 #ff1d5e, -19px 19px 0 #ff1d5e;
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+        box-shadow: none;
+    }
+}
+
+@keyframes flower-spinner-smaller-dot-animation {
+    0% {
+        box-shadow: none;
+    }
+
+    25%,75% {
+        box-shadow: 14px 0 0 #ff1d5e, -14px 0 0 #ff1d5e, 0 14px 0 #ff1d5e, 0 -14px 0 #ff1d5e, 10px -10px 0 #ff1d5e, 10px 10px 0 #ff1d5e, -10px -10px 0 #ff1d5e, -10px 10px 0 #ff1d5e;
+    }
+
+    100% {
+        box-shadow: none;
+    }
+}
+
+@keyframes pixel-spinner-animation {
+    50% {
+        box-shadow: 20px 20px 0 0, -20px -20px 0 0, 20px -20px 0 0, -20px 20px 0 0, 0 10px 0 0, 10px 0 0 0, -10px 0 0 0, 0 -10px 0 0;
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes orbit-spinner-orbit-one-animation {
+    0% {
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+    }
+}
+
+@keyframes orbit-spinner-orbit-two-animation {
+    0% {
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+    }
+}
+
+@keyframes orbit-spinner-orbit-three-animation {
+    0% {
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+    }
+}
+
+@keyframes atom-spinner-animation-1 {
+    100% {
+        transform: rotateZ(120deg) rotateX(66deg) rotateZ(360deg);
+    }
+}
+
+@keyframes atom-spinner-animation-2 {
+    100% {
+        transform: rotateZ(240deg) rotateX(66deg) rotateZ(360deg);
+    }
+}
+
+@keyframes atom-spinner-animation-3 {
+    100% {
+        transform: rotateZ(360deg) rotateX(66deg) rotateZ(360deg);
+    }
+}
+
+@keyframes fingerprint-spinner-animation {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes semipolar-spinner-animation {
+    50% {
+        transform: rotate(360deg) scale(0.7);
+    }
+}

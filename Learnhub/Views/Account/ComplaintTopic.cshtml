@@ -1,7 +1,7 @@
-﻿@model List<Learnhub.Models.ForumTopic>
+﻿@model List<Learnhub.Models.ComplaintTopic>
 
 @{
-    ViewData["Title"] = "Forum Topics";
+    ViewData["Title"] = "Complaint Topics";
 
     var currentSearch = Context.Request.Query["search"].ToString();
     var currentSortBy = Context.Request.Query["sortBy"].ToString();
@@ -32,7 +32,7 @@
 }
 
 <div class="container mt-4">
-    <h2>Forum Topics</h2>
+    <h2>Complaint Topics</h2>
 
     <!-- Switch View Button -->
     <div class="mb-3">
@@ -173,7 +173,7 @@
                     {
                         <tr>
                             <td>
-                                <a asp-controller="Details" asp-action="Index" asp-route-id="@topic.Id" class="text-decoration-none">
+                                <a asp-controller="ComplaintDetails" asp-action="Index" asp-route-id="@topic.Id" class="text-decoration-none">
                                     @topic.Title
                                 </a>
                             </td>
@@ -211,13 +211,13 @@
                         <div class="card h-100 shadow-sm">
                             @if (!string.IsNullOrEmpty(topic.CoverImagePath))
                             {
-                                <a asp-controller="Details" asp-action="Index" asp-route-id="@topic.Id">
-                                    <img src="~/uploads/forum/@System.IO.Path.GetFileName(topic.CoverImagePath)" class="card-img-top" alt="Topic Image" style="height: 200px; object-fit: cover;" />
+                                <a asp-controller="ComplaintDetails" asp-action="Index" asp-route-id="@topic.Id">
+                                    <img src="@Url.Content(topic.CoverImagePath)" class="card-img-top" alt="Topic Image" style="height: 200px; object-fit: cover;" />
                                 </a>
                             }
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title">
-                                    <a asp-controller="Details" asp-action="Index" asp-route-id="@topic.Id" class="text-decoration-none">@topic.Title</a>
+                                    <a asp-controller="ComplaintDetails" asp-action="Index" asp-route-id="@topic.Id" class="text-decoration-none">@topic.Title</a>
                                 </h5>
                                 <p class="card-text text-truncate" title="@topic.Description">@topic.Description</p>
                                 <p class="card-text mb-1"><small class="text-muted">Created: @topic.CreatedAt.ToString("yyyy-MM-dd")</small></p>

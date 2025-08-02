@@ -41,6 +41,9 @@ namespace Learnhub.Models
         public decimal WalletBalance { get; set; } = 0m;
 
         public string? BackgroundImagePath { get; set; }
+
+        public string? ProfileImagePath { get; set; }
+
     }
 }
 

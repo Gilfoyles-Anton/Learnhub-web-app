@@ -1,0 +1,259 @@
+﻿@model Learnhub.Models.ComplaintTopicDetailViewModel
+
+@{
+    ViewData["Title"] = "Complaint Details";
+}
+
+<div class="container mt-4">
+    <div class="card shadow rounded">
+        @if (!string.IsNullOrEmpty(Model.CoverImagePath))
+        {
+            <img src="@Url.Content(Model.CoverImagePath)" alt="Cover Image" class="card-img-top" style="max-height: 300px; object-fit: cover;" />
+        }
+
+        <div class="card-body">
+            <h2 class="card-title">@Model.Title</h2>
+            <p class="card-text text-muted">By <strong>@Model.CreatedBy</strong> | @Model.CreatedAt.ToString("yyyy-MM-dd HH:mm")</p>
+
+            <hr />
+
+            <p class="card-text">@Model.Description</p>
+
+            <div class="mt-4 d-flex justify-content-between">
+                <span>
+                    <strong>Likes:</strong> <span id="topic-like-count">@Model.Likes</span>
+                    <button id="btn-like-topic" class="btn btn-sm btn-outline-success ms-2">
+                        <i class="bi bi-hand-thumbs-up"></i> Like
+                    </button>
+                </span>
+                <span><strong>Views:</strong> @Model.Views</span>
+                <span>
+                    <strong>Participants:</strong> <span id="topic-participant-count">@Model.ParticipantsCount</span>
+                    <button id="btn-participate-topic" class="btn btn-sm btn-outline-info ms-2">
+                        <i class="bi bi-people"></i> Participate
+                    </button>
+                </span>
+                <span><strong>Pinned:</strong> @(Model.IsPinned ? "Yes" : "No")</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Complaint Topic Discussion Area -->
+<div class="container mt-4">
+    <hr />
+    <h4>Comments (@Model.TotalComments)</h4>
+
+    <div class="mb-3 d-flex flex-wrap gap-2">
+        <input id="searchUser" type="text" class="form-control form-control-sm" placeholder="Search username" style="max-width:180px;" />
+        <input id="searchContent" type="text" class="form-control form-control-sm" placeholder="Search content" style="max-width:220px;" />
+        <button id="btnSearch" class="btn btn-sm btn-outline-primary">Search</button>
+        <button id="btnReset" class="btn btn-sm btn-outline-secondary">Reset</button>
+    </div>
+    <div class="mb-3 d-flex flex-wrap gap-2">
+        <button class="btn btn-sm btn-outline-primary" data-sort="date">Date <span id="arrow-date"></span></button>
+        <button class="btn btn-sm btn-outline-primary" data-sort="likes">Likes <span id="arrow-likes"></span></button>
+        <button class="btn btn-sm btn-outline-primary" data-sort="length">Length <span id="arrow-length"></span></button>
+        <button class="btn btn-sm btn-outline-primary" data-sort="username">Username <span id="arrow-username"></span></button>
+        <button id="filterAllBtn" class="btn btn-sm btn-outline-secondary">Show All</button>
+    </div>
+
+    <ul class="list-group mb-3" id="commentsList">
+        @foreach (var comment in Model.Comments)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-start"
+                data-created="@comment.CreatedAt.Ticks"
+                data-likes="@comment.LikeCount"
+                data-length="@comment.Content.Length"
+                data-username="@comment.UserName.ToLower()">
+                <div class="d-flex">
+                    <img src="@(string.IsNullOrWhiteSpace(comment.UserAvatarUrl) ? "/images/default-avatar.png" : comment.UserAvatarUrl)"
+                         onerror="this.onerror=null;this.src='/images/default-avatar.png';"
+                         alt="avatar"
+                         class="rounded-circle me-3"
+                         style="width:50px; height:50px; object-fit:cover;" />
+                    <div>
+                        <div class="fw-bold">@comment.UserName</div>
+                        <div>@comment.Content</div>
+                        <small class="text-muted">Posted: @comment.CreatedAt.ToString("yyyy-MM-dd HH:mm")</small>
+                    </div>
+                </div>
+                <button class="btn btn-sm btn-outline-primary btn-like-comment" data-commentid="@comment.Id" title="Like">
+                    <i class="bi bi-hand-thumbs-up"></i>
+                    <span class="like-count">@comment.LikeCount</span>
+                </button>
+            </li>
+        }
+    </ul>
+
+    <nav aria-label="Comment pagination">
+        <ul class="pagination">
+            @for (int i = 1; i <= (int)Math.Ceiling((double)Model.TotalComments / Model.PageSize); i++)
+            {
+                <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", "ComplaintDetails", new { id = Model.Id, pageNumber = i })">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+
+    <hr />
+    <h4>Add a Comment</h4>
+    <div class="mb-3">
+        <textarea id="commentContent" class="form-control" rows="3" placeholder="Write your comment here..."></textarea>
+    </div>
+    <button id="submitCommentBtn" class="btn btn-primary mb-4" onclick="submitComment()">Submit Comment</button>
+</div>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+@section Scripts {
+    <script>
+        const complaintTopicId = @Model.Id;
+
+        const sortState = { field: 'date', order: 'desc' };
+        let searchUser = '';
+        let searchContent = '';
+
+        let initialItems = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('commentsList');
+            initialItems = Array.from(container.children);
+
+            document.querySelectorAll('[data-sort]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const f = btn.getAttribute('data-sort');
+                    if (sortState.field === f) {
+                        sortState.order = sortState.order === 'desc' ? 'asc' : 'desc';
+                    } else {
+                        sortState.field = f;
+                        sortState.order = 'desc';
+                    }
+                    updateArrows();
+                    renderComments();
+                });
+            });
+
+            document.getElementById('btnSearch').addEventListener('click', () => {
+                searchUser = document.getElementById('searchUser').value.trim().toLowerCase();
+                searchContent = document.getElementById('searchContent').value.trim().toLowerCase();
+                renderComments();
+            });
+
+            document.getElementById('btnReset').addEventListener('click', () => {
+                document.getElementById('searchUser').value = '';
+                document.getElementById('searchContent').value = '';
+                searchUser = '';
+                searchContent = '';
+                sortState.field = 'date';
+                sortState.order = 'desc';
+                updateArrows();
+                renderComments();
+            });
+
+            bindLikeButtons();
+            updateArrows();
+
+            // Bind topic like and participate buttons
+            document.getElementById('btn-like-topic').addEventListener('click', () => {
+                fetch(`/ComplaintDetails/LikeTopic/${complaintTopicId}`, {
+                    method: 'POST'
+                })
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('topic-like-count').textContent = data.likes;
+                })
+                .catch(console.error);
+            });
+
+            document.getElementById('btn-participate-topic').addEventListener('click', () => {
+                fetch(`/ComplaintDetails/ParticipateTopic/${complaintTopicId}`, {
+                    method: 'POST'
+                })
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('topic-participant-count').textContent = data.participants;
+                })
+                .catch(console.error);
+            });
+        });
+
+        function updateArrows() {
+            ['date', 'likes', 'length', 'username'].forEach(f => {
+                const el = document.getElementById(`arrow-${f}`);
+                el.textContent = sortState.field === f
+                    ? (sortState.order === 'desc' ? ' ↓' : ' ↑')
+                    : '';
+            });
+        }
+
+        function renderComments() {
+            const container = document.getElementById('commentsList');
+            let items = initialItems.slice();
+
+            if (searchUser) {
+                items = items.filter(li => li.getAttribute('data-username').includes(searchUser));
+            }
+            if (searchContent) {
+                items = items.filter(li => li.textContent.toLowerCase().includes(searchContent));
+            }
+
+            items.sort((a, b) => {
+                let va, vb;
+                switch (sortState.field) {
+                    case 'date':
+                        va = +a.getAttribute('data-created');
+                        vb = +b.getAttribute('data-created');
+                        break;
+                    case 'likes':
+                        va = +a.getAttribute('data-likes');
+                        vb = +b.getAttribute('data-likes');
+                        break;
+                    case 'length':
+                        va = +a.getAttribute('data-length');
+                        vb = +b.getAttribute('data-length');
+                        break;
+                    case 'username':
+                        va = a.getAttribute('data-username');
+                        vb = b.getAttribute('data-username');
+                        break;
+                }
+                if (va < vb) return sortState.order === 'desc' ? 1 : -1;
+                if (va > vb) return sortState.order === 'desc' ? -1 : 1;
+                return 0;
+            });
+
+            container.innerHTML = '';
+            items.forEach(li => container.appendChild(li));
+            bindLikeButtons();
+        }
+
+        function bindLikeButtons() {
+            document.querySelectorAll('.btn-like-comment').forEach(btn => {
+                btn.onclick = () => {
+                    const cid = btn.getAttribute('data-commentid');
+                    fetch(`/ComplaintDetails/ToggleCommentLike/${cid}`, { method: 'POST' })
+                        .then(res => res.json())
+                        .then(data => {
+                            btn.querySelector('.like-count').textContent = data.likeCount;
+                            btn.closest('li').setAttribute('data-likes', data.likeCount);
+                            renderComments();
+                        })
+                        .catch(console.error);
+                };
+            });
+        }
+
+        function submitComment() {
+            const content = document.getElementById('commentContent').value.trim();
+            if (!content) return alert('Comment cannot be empty.');
+            fetch('/ComplaintDetails/AddComment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `complaintTopicId=${complaintTopicId}&content=${encodeURIComponent(content)}`
+            }).then(() => location.reload());
+        }
+    </script>
+}
+

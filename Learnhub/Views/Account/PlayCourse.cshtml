@@ -1,35 +1,43 @@
-﻿@model Learnhub.Models.Course
+﻿@model Learnhub.Models.CourseDetailViewModel
 
 @{
     ViewData["Title"] = "Play Course";
 
-    var rawPaths = Model.VideoFilePaths?.Split(';') ?? new string[0];
+    var rawPaths = Model.Course.VideoFilePaths?.Split(';') ?? new string[0];
     var videoPaths = rawPaths
         .Where(p => !string.IsNullOrWhiteSpace(p))
         .Select(p => $"/Video/{p.Trim()}")
         .ToArray();
-
-    var videoNames = Model.VideoFileNames?.Split(';') ?? new string[videoPaths.Length];
+    var videoNames = Model.Course.VideoFileNames?.Split(';')
+        ?? new string[videoPaths.Length];
 }
 
 <div class="container mt-4">
-    <h2>@Model.Title</h2>
-    <p>@Model.Description</p>
-    <p><strong>Price:</strong> $@Model.Price</p>
+    <h2>@Model.Course.Title</h2>
+    <p>@Model.Course.Description</p>
+    <p><strong>Price:</strong> $@Model.Course.Price</p>
+
+    <div class="mb-3 d-flex align-items-center flex-wrap gap-4 fs-5">
+        <span>
+            <i class="bi bi-hand-thumbs-up-fill text-primary"></i>
+            <span id="totalLikes">@Model.Course.Likes</span> Likes
+        </span>
+        <span>
+            <i class="bi bi-play-circle-fill text-success"></i>
+            <span id="totalViews">@Model.Course.Views</span> Views
+        </span>
+        <span>
+            <i class="bi bi-heart-fill text-danger"></i>
+            <span id="totalFavorites">@Model.Course.Favorites</span> Favorites
+        </span>
+        <span>
+            <i class="bi bi-cart-check-fill text-warning"></i>
+            <span id="totalPurchases">@Model.Course.Purchases</span> Purchases
+        </span>
+    </div>
 
     @if (videoPaths.Length > 0)
     {
-        <div class="mb-3 d-flex align-items-center flex-wrap gap-4 fs-5">
-            <span><i class="bi bi-hand-thumbs-up-fill text-primary"></i>
-                <span id="totalLikes">@Model.Likes</span> Likes</span>
-            <span><i class="bi bi-play-circle-fill text-success"></i>
-                <span id="totalViews">@Model.Views</span> Views</span>
-            <span><i class="bi bi-heart-fill text-danger"></i>
-                <span id="totalFavorites">@Model.Favorites</span> Favorites</span>
-            <span><i class="bi bi-cart-check-fill text-warning"></i>
-                <span id="totalPurchases">@Model.Purchases</span> Purchases</span>
-        </div>
-
         <div class="row">
             <div class="col-md-8 mb-4">
                 <div class="responsive-video-container mb-2">
@@ -39,30 +47,107 @@
                     </video>
                 </div>
 
-                <div class="d-flex align-items-center gap-4 mb-3 fs-5">
+                <div class="d-flex align-items-center gap-4 mb-3 fs-5 flex-wrap">
                     <button class="btn btn-outline-primary btn-sm" onclick="toggleLike()">
                         <i class="bi bi-hand-thumbs-up"></i>
-                        <span id="likeCount">@Model.Likes</span> Like
+                        <span id="likeCount">@Model.Course.Likes</span> Like
                     </button>
 
                     <button id="favoriteBtn" class="btn btn-outline-danger btn-sm" onclick="toggleFavorite()">
                         <i id="favoriteIcon" class="bi bi-heart"></i>
-                        <span id="favoriteCount">@Model.Favorites</span> Favorite
+                        <span id="favoriteCount">@Model.Course.Favorites</span> Favorite
                     </button>
 
-                    <!-- 🛒 Purchase Button Added -->
                     <button id="purchaseBtn" class="btn btn-outline-warning btn-sm" onclick="purchaseCourse()">
                         <i class="bi bi-cart-plus"></i>
                         <span id="purchaseBtnText">Purchase</span>
                     </button>
 
-                    <span><i class="bi bi-play-fill text-success"></i>
-                        <span id="videoPlayCount">0</span> plays</span>
+                    <span>
+                        <i class="bi bi-play-fill text-success"></i>
+                        <span id="videoPlayCount">0</span> plays
+                    </span>
                 </div>
 
-                <div id="currentVideoInfo" class="text-muted">
+                <div id="currentVideoInfo" class="text-muted mb-4">
                     Video: @(videoNames.Length > 0 ? videoNames[0] : "Unknown")
                 </div>
+
+                <!-- Comments section: Search, Sort and Purchase Filter Buttons -->
+                <hr />
+                <h4>Comments (@Model.TotalComments)</h4>
+                <div class="mb-3 d-flex flex-wrap gap-2">
+                    <input id="searchUser" type="text" class="form-control form-control-sm" placeholder="Search username" style="max-width:180px;" />
+                    <input id="searchContent" type="text" class="form-control form-control-sm" placeholder="Search content" style="max-width:220px;" />
+                    <button id="btnSearch" class="btn btn-sm btn-outline-primary">Search</button>
+                    <button id="btnReset" class="btn btn-sm btn-outline-secondary">Reset</button>
+                </div>
+                <div class="mb-3 d-flex flex-wrap gap-2">
+                    <button class="btn btn-sm btn-outline-primary" data-sort="date">Date <span id="arrow-date"></span></button>
+                    <button class="btn btn-sm btn-outline-primary" data-sort="likes">Likes <span id="arrow-likes"></span></button>
+                    <button class="btn btn-sm btn-outline-primary" data-sort="length">Length <span id="arrow-length"></span></button>
+                    <button class="btn btn-sm btn-outline-primary" data-sort="username">Username <span id="arrow-username"></span></button>
+                    <button id="filterAllBtn" class="btn btn-sm btn-outline-secondary">Show All</button>
+                    <button id="filterPurchasedBtn" class="btn btn-sm btn-outline-secondary">Purchased Only</button>
+                    <button id="filterNotPurchasedBtn" class="btn btn-sm btn-outline-secondary">Not Purchased Only</button>
+                </div>
+
+                <!-- Comment List -->
+                <ul class="list-group mb-3" id="commentsList">
+                    @foreach (var comment in Model.Comments)
+                    {
+                        <li class="list-group-item d-flex justify-content-between align-items-start"
+                            data-purchased="@comment.UserHasPurchased"
+                            data-created="@comment.CreatedAt.Ticks"
+                            data-likes="@comment.LikeCount"
+                            data-length="@comment.Content.Length"
+                            data-username="@comment.UserName.ToLower()">
+                            <div class="d-flex">
+                                <img src="@(string.IsNullOrWhiteSpace(comment.UserAvatarUrl) ? "/images/default-avatar.png" : comment.UserAvatarUrl)"
+                                     onerror="this.onerror=null;this.src='/images/default-avatar.png';"
+                                     alt="avatar"
+                                     class="rounded-circle me-3"
+                                     style="width:50px; height:50px; object-fit:cover;" />
+                                <div>
+                                    <div class="fw-bold">
+                                        @comment.UserName
+                                        <small class="text-muted ms-2">
+                                            (@(comment.UserHasPurchased ? "Purchased" : "Not Purchased"))
+                                        </small>
+                                    </div>
+                                    <div>@comment.Content</div>
+                                    <small class="text-muted">
+                                        Posted: @comment.CreatedAt:yyyy-MM-dd HH:mm
+                                    </small>
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary btn-like-comment" data-commentid="@comment.Id" title="Like">
+                                <i class="bi bi-hand-thumbs-up"></i>
+                                <span class="like-count">@comment.LikeCount</span>
+                            </button>
+                        </li>
+                    }
+                </ul>
+
+                <!-- Page information display -->
+                <nav aria-label="Comment pagination">
+                    <ul class="pagination">
+                        @for (int i = 1; i <= (int)Math.Ceiling((double)Model.TotalComments / Model.PageSize); i++)
+                        {
+                            <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                                <a class="page-link" href="@Url.Action("PlayCourse", new { id = Model.Course.Id, pageNumber = i })">@i</a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+
+                <!-- New comment input area -->
+                <hr />
+                <h4>Add a Comment</h4>
+                <div class="mb-3">
+                    <textarea id="commentContent" class="form-control" rows="3" placeholder="Write your comment here..."></textarea>
+                </div>
+                <button id="submitCommentBtn" class="btn btn-primary mb-4" onclick="submitComment()">Submit Comment</button>
             </div>
 
             <div class="col-md-4">
@@ -71,8 +156,8 @@
                     @for (int i = 0; i < videoPaths.Length; i++)
                     {
                         var name = (videoNames.Length > i && !string.IsNullOrWhiteSpace(videoNames[i]))
-                            ? videoNames[i]
-                            : $"Video {i + 1}";
+                        ? videoNames[i]
+                        : $"Video {i + 1}";
                         <li class="list-group-item">
                             <a href="#" onclick="playVideo('@videoPaths[i]', '@name'); return false;">
                                 @name
@@ -85,7 +170,9 @@
     }
     else
     {
-        <p class="text-danger fw-bold">No videos available. Please check that the course's VideoFilePaths are set correctly and the video files exist in /Video/.</p>
+        <p class="text-danger fw-bold">
+            No videos available. Please check that VideoFilePaths are set correctly.
+        </p>
     }
 </div>
 
@@ -99,94 +186,214 @@
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
 
-    .responsive-video-container video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
+        .responsive-video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
 </style>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
 @section Scripts {
-<script>
-    const courseId = @Model.Id;
-    let videoPlayCount = 0;
+    <script>
+        const courseId = @Model.Course.Id;
 
-    function playVideo(path, name) {
-        const video = document.getElementById("mainVideo");
-        video.src = path;
-        video.load();
-        video.play();
+        // Sorting, filtering, and searching status
+        const sortState = { field: 'date', order: 'desc' };
+        let filterMode = 'all'; // 'all' | 'purchased' | 'notPurchased'
+        let searchUser = '';
+        let searchContent = '';
 
-        videoPlayCount = 0;
-        document.getElementById("videoPlayCount").textContent = videoPlayCount;
-        document.getElementById("currentVideoInfo").textContent = "Video: " + name;
-    }
+        //Cache the initial comment nodes
+        let initialItems = [];
 
-    function toggleLike() {
-        fetch(`/Course/LikeCourse/${courseId}`, {
-            method: 'POST'
-        })
-        .then(res => res.ok ? res.json() : Promise.reject())
-        .then(data => {
-            if (typeof data.likes === "number") {
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('commentsList');
+            initialItems = Array.from(container.children);
+
+            // Sort button
+            document.querySelectorAll('[data-sort]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const f = btn.getAttribute('data-sort');
+                    if (sortState.field === f) {
+                        sortState.order = sortState.order === 'desc' ? 'asc' : 'desc';
+                    } else {
+                        sortState.field = f;
+                        sortState.order = 'desc';
+                    }
+                    updateArrows();
+                    renderComments();
+                });
+            });
+
+            // Filter Mode Button
+            document.getElementById('filterAllBtn')
+                .addEventListener('click', () => { filterMode = 'all'; renderComments(); });
+            document.getElementById('filterPurchasedBtn')
+                .addEventListener('click', () => { filterMode = 'purchased'; renderComments(); });
+            document.getElementById('filterNotPurchasedBtn')
+                .addEventListener('click', () => { filterMode = 'notPurchased'; renderComments(); });
+
+            // Search button
+            document.getElementById('btnSearch')
+                .addEventListener('click', () => {
+                    searchUser    = document.getElementById('searchUser').value.trim().toLowerCase();
+                    searchContent = document.getElementById('searchContent').value.trim().toLowerCase();
+                    renderComments();
+                });
+
+            // Reset button
+            document.getElementById('btnReset')
+                .addEventListener('click', () => {
+                    document.getElementById('searchUser').value = '';
+                    document.getElementById('searchContent').value = '';
+                    searchUser = '';
+                    searchContent = '';
+                    filterMode = 'all';
+                    sortState.field = 'date';
+                    sortState.order = 'desc';
+                    updateArrows();
+                    renderComments();
+                });
+
+            bindLikeButtons();
+            updateArrows();
+        });
+
+        // Update arrow
+        function updateArrows() {
+            ['date','likes','length','username'].forEach(f => {
+                const el = document.getElementById(`arrow-${f}`);
+                el.textContent = sortState.field === f
+                    ? (sortState.order === 'desc' ? ' ↓' : ' ↑')
+                    : '';
+            });
+        }
+
+        // Rendering, sorting, filtering, searching
+        function renderComments() {
+            const container = document.getElementById('commentsList');
+            let items = initialItems.slice();
+
+            // Purchase filtration
+            if (filterMode === 'purchased') {
+                items = items.filter(li => li.getAttribute('data-purchased') === 'True');
+            } else if (filterMode === 'notPurchased') {
+                items = items.filter(li => li.getAttribute('data-purchased') === 'False');
+            }
+
+            // Search filtering
+            if (searchUser) {
+                items = items.filter(li => li.getAttribute('data-username').includes(searchUser));
+            }
+            if (searchContent) {
+                items = items.filter(li => li.textContent.toLowerCase().includes(searchContent));
+            }
+
+            // Sort
+            items.sort((a,b) => {
+                let va, vb;
+                switch(sortState.field) {
+                    case 'date':
+                        va = +a.getAttribute('data-created');
+                        vb = +b.getAttribute('data-created');
+                        break;
+                    case 'likes':
+                        va = +a.getAttribute('data-likes');
+                        vb = +b.getAttribute('data-likes');
+                        break;
+                    case 'length':
+                        va = +a.getAttribute('data-length');
+                        vb = +b.getAttribute('data-length');
+                        break;
+                    case 'username':
+                        va = a.getAttribute('data-username');
+                        vb = b.getAttribute('data-username');
+                        break;
+                }
+                if (va < vb) return sortState.order === 'desc' ? 1 : -1;
+                if (va > vb) return sortState.order === 'desc' ? -1 : 1;
+                return 0;
+            });
+
+            container.innerHTML = '';
+            items.forEach(li => container.appendChild(li));
+            bindLikeButtons();
+        }
+
+        // Like/comment binding
+        function bindLikeButtons() {
+            document.querySelectorAll('.btn-like-comment').forEach(btn => {
+                btn.onclick = () => {
+                    const cid = btn.getAttribute('data-commentid');
+                    fetch(`/Course/ToggleCommentLike/${cid}`, { method: 'POST' })
+                        .then(res => res.json())
+                        .then(data => {
+                            btn.querySelector('.like-count').textContent = data.likeCount;
+                            btn.closest('li').setAttribute('data-likes', data.likeCount);
+                            renderComments();
+                        })
+                        .catch(console.error);
+                };
+            });
+        }
+
+        // The rest of the scripts remain unchanged.
+        function playVideo(path, name) {
+            const video = document.getElementById("mainVideo");
+            video.src = path; video.load(); video.play();
+            document.getElementById("videoPlayCount").textContent = 0;
+            document.getElementById("currentVideoInfo").textContent = "Video: " + name;
+        }
+        function toggleLike() {
+            fetch(`/Course/LikeCourse/${courseId}`, { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
                 document.getElementById("totalLikes").textContent = data.likes;
-                document.getElementById("likeCount").textContent = data.likes;
-            }
-        })
-        .catch(err => console.error("Error updating like:", err));
-    }
-
-    function toggleFavorite() {
-        fetch(`/Course/ToggleFavoriteCourse/${courseId}`, {
-            method: 'POST'
-        })
-        .then(res => res.ok ? res.json() : Promise.reject())
-        .then(data => {
-            document.getElementById("totalFavorites").textContent = data.favorites;
-            document.getElementById("favoriteCount").textContent = data.favorites;
-
-            const icon = document.getElementById("favoriteIcon");
-            icon.classList.toggle("bi-heart");
-            icon.classList.toggle("bi-heart-fill");
-        })
-        .catch(err => console.error("Error updating favorite:", err));
-    }
-
-    function increasePlayCount() {
-        videoPlayCount++;
-        document.getElementById("videoPlayCount").textContent = videoPlayCount;
-
-        fetch(`/Course/AddView/${courseId}`, {
-            method: 'POST'
-        })
-        .then(() => {
-            const viewSpan = document.getElementById("totalViews");
-            viewSpan.textContent = parseInt(viewSpan.textContent) + 1;
-        })
-        .catch(err => console.error("Error updating view count:", err));
-    }
-
-    function purchaseCourse() {
-        fetch(`/Course/PurchaseCourse/${courseId}`, {
-            method: 'POST'
-        })
-        .then(res => res.ok ? res.json() : Promise.reject())
-        .then(data => {
-            if (data.success) {
-                document.getElementById("totalPurchases").textContent = data.purchases;
-                document.getElementById("purchaseBtn").disabled = true;
-                document.getElementById("purchaseBtnText").textContent = "Purchased";
-                alert("Purchase successful!");
-            } else {
-                alert("Purchase failed: " + (data.message || "unknown error"));
-            }
-        })
-        .catch(err => console.error("Error purchasing course:", err));
-    }
-</script>
+                document.getElementById("likeCount").textContent   = data.likes;
+            });
+        }
+        function toggleFavorite() {
+            fetch(`/Course/ToggleFavoriteCourse/${courseId}`, { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("totalFavorites").textContent = data.favorites;
+                document.getElementById("favoriteCount").textContent  = data.favorites;
+                const icon = document.getElementById("favoriteIcon");
+                icon.classList.toggle("bi-heart");
+                icon.classList.toggle("bi-heart-fill");
+            });
+        }
+        function increasePlayCount() {
+            fetch(`/Course/AddView/${courseId}`, { method: 'POST' })
+            .then(() => {
+                const v = document.getElementById("totalViews");
+                v.textContent = +v.textContent + 1;
+                document.getElementById("videoPlayCount").textContent++;
+            });
+        }
+        function purchaseCourse() {
+            fetch(`/Course/PurchaseCourse/${courseId}`, { method: 'POST' })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById("totalPurchases").textContent = data.purchases;
+                    document.getElementById("purchaseBtn").disabled      = true;
+                    document.getElementById("purchaseBtnText").textContent = "Purchased";
+                }
+            });
+        }
+        function submitComment() {
+            const content = document.getElementById("commentContent").value.trim();
+            if (!content) return alert("Comment cannot be empty.");
+            fetch(`/Course/AddComment`, {
+                method: 'POST',
+                headers: { 'Content-Type':'application/x-www-form-urlencoded' },
+                body: `courseId=${courseId}&content=${encodeURIComponent(content)}`
+            }).then(() => location.reload());
+        }
+    </script>
 }
-

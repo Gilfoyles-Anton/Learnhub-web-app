@@ -3,6 +3,9 @@
   "WorkspaceRootPath": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__ProjectModels/LearnhublabDB/True/SqlTable/dbo.Users.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|c:\\users\\luo ziyi\\desktop\\mvc development pattern web\\learnhub\\controllers\\personalizationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7AF7E794-453D-47DA-B032-07F359D5CE4A}|Learnhub\\Learnhub.csproj|solutionrelative:learnhub\\controllers\\personalizationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -122,7 +125,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -142,7 +145,17 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "dbo.Users [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__ProjectModels/LearnhublabDB/True/SqlTable/dbo.Users.sql",
+              "ToolTip": "dbo.Users [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-07-20T06:29:02.582Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Users.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\Users.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\Users.cshtml",
@@ -155,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "PersonalizationController.cs",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Controllers\\PersonalizationController.cs",
               "RelativeDocumentMoniker": "Learnhub\\Controllers\\PersonalizationController.cs",
@@ -168,7 +181,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "CreateUser.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\CreateUser.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\CreateUser.cshtml",
@@ -180,7 +193,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "CreateWalletActivationCode.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\CreateWalletActivationCode.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\CreateWalletActivationCode.cshtml",
@@ -192,7 +205,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "CreateActivationCode.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\CreateActivationCode.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\CreateActivationCode.cshtml",
@@ -204,7 +217,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Courses.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\Courses.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\Courses.cshtml",
@@ -216,7 +229,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "AdminSettings.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\AdminSettings.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\AdminSettings.cshtml",
@@ -228,7 +241,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Personalization.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\Personalization.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\Personalization.cshtml",
@@ -241,7 +254,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Models\\User.cs",
               "RelativeDocumentMoniker": "Learnhub\\Models\\User.cs",
@@ -254,7 +267,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Learnhub\\Controllers\\AccountController.cs",
@@ -267,7 +280,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "AdminActivationCode.cs",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Models\\AdminActivationCode.cs",
               "RelativeDocumentMoniker": "Learnhub\\Models\\AdminActivationCode.cs",
@@ -280,7 +293,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "AdminProfile.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\AdminProfile.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\AdminProfile.cshtml",
@@ -292,7 +305,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "CreateCourse.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\CreateCourse.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\CreateCourse.cshtml",
@@ -304,7 +317,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "ActivationCodes.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\ActivationCodes.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\ActivationCodes.cshtml",
@@ -316,7 +329,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "EditActivationCode.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\EditActivationCode.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\EditActivationCode.cshtml",
@@ -328,7 +341,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "EditCourse.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\EditCourse.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\EditCourse.cshtml",
@@ -340,7 +353,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "EditForumTopic.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\EditForumTopic.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\EditForumTopic.cshtml",
@@ -352,7 +365,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "EditUser.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\EditUser.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\EditUser.cshtml",
@@ -364,7 +377,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "EditWalletActivationCode.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\EditWalletActivationCode.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\EditWalletActivationCode.cshtml",
@@ -376,7 +389,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "ForumTopic.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\ForumTopic.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\ForumTopic.cshtml",
@@ -388,7 +401,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\Login.cshtml",
@@ -400,7 +413,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "PlayCourse.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\PlayCourse.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\PlayCourse.cshtml",
@@ -412,7 +425,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "Register.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\Register.cshtml",
@@ -424,7 +437,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "UserSettings.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\UserSettings.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\UserSettings.cshtml",
@@ -436,7 +449,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "WalletActivationCodes.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Account\\WalletActivationCodes.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Account\\WalletActivationCodes.cshtml",
@@ -448,7 +461,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "Learnhub\\Views\\Shared\\_Layout.cshtml",
@@ -460,7 +473,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "CourseController.cs",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Controllers\\CourseController.cs",
               "RelativeDocumentMoniker": "Learnhub\\Controllers\\CourseController.cs",
@@ -472,7 +485,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "UserCourseInteraction.cs",
               "DocumentMoniker": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Models\\UserCourseInteraction.cs",
               "RelativeDocumentMoniker": "Learnhub\\Models\\UserCourseInteraction.cs",

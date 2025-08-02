@@ -7888,11 +7888,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Learnhub.csproj",
+      "projectUniqueName": "C:\\Users\\Luo Ziyi\\Desktop\\new\\Learnhub\\Learnhub.csproj",
       "projectName": "Learnhub",
-      "projectPath": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\Learnhub.csproj",
+      "projectPath": "C:\\Users\\Luo Ziyi\\Desktop\\new\\Learnhub\\Learnhub.csproj",
       "packagesPath": "C:\\Users\\Luo Ziyi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Luo Ziyi\\Desktop\\MVC development pattern web\\Learnhub\\obj\\",
+      "outputPath": "C:\\Users\\Luo Ziyi\\Desktop\\new\\Learnhub\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
